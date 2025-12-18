@@ -1,0 +1,1324 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Assembly · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="3_endianness.html" />
+    
+    
+    <link rel="prev" href="1_beginning.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Bem vindo
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="1_beginning.html">
+            
+                <a href="1_beginning.html">
+            
+                    
+                    Introdução ao Pwning
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.2.1" data-path="2_assembly.html">
+            
+                <a href="2_assembly.html">
+            
+                    
+                    Assembly
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="3_endianness.html">
+            
+                <a href="3_endianness.html">
+            
+                    
+                    Endianness
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="4_ghidra.html">
+            
+                <a href="4_ghidra.html">
+            
+                    
+                    Ghidra
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="5_gdb.html">
+            
+                <a href="5_gdb.html">
+            
+                    
+                    GDB
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="6_pwntools.html">
+            
+                <a href="6_pwntools.html">
+            
+                    
+                    Pwntools
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../pwning/1_beginning.html">
+            
+                <a href="../pwning/1_beginning.html">
+            
+                    
+                    Pwning
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../pwning/2_0_bof.html">
+            
+                <a href="../pwning/2_0_bof.html">
+            
+                    
+                    Buffer Overflow
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1.1" data-path="../pwning/2_1_bof_variables.html">
+            
+                <a href="../pwning/2_1_bof_variables.html">
+            
+                    
+                    Buffer Overflow - Variáveis
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.2" data-path="../pwning/2_2_bof_callfunction.html">
+            
+                <a href="../pwning/2_2_bof_callfunction.html">
+            
+                    
+                    Buffer Overflow - CallFunction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.3" data-path="../pwning/2_3_bof_shellcode.html">
+            
+                <a href="../pwning/2_3_bof_shellcode.html">
+            
+                    
+                    Buffer Overflow - ShellCode
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.4" data-path="../pwning/3_format_strings.html">
+            
+                <a href="../pwning/3_format_strings.html">
+            
+                    
+                    Format Strings
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../fast_food/beginning.html">
+            
+                <a href="../fast_food/beginning.html">
+            
+                    
+                    Fast Food
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../fast_food/introduction/1_beggining.html">
+            
+                <a href="../fast_food/introduction/1_beggining.html">
+            
+                    
+                    Fast Intro
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.1" data-path="../fast_food/introduction/2_assembly.html">
+            
+                <a href="../fast_food/introduction/2_assembly.html">
+            
+                    
+                    Assembly CheatSheet
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2" data-path="../fast_food/introduction/3_endianness.html">
+            
+                <a href="../fast_food/introduction/3_endianness.html">
+            
+                    
+                    Endianness
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.3" data-path="../fast_food/introduction/4_ghidra.html">
+            
+                <a href="../fast_food/introduction/4_ghidra.html">
+            
+                    
+                    Ghidra
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.4" data-path="../fast_food/introduction/5_gdb.html">
+            
+                <a href="../fast_food/introduction/5_gdb.html">
+            
+                    
+                    GDB CheatSheet
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.5" data-path="../fast_food/introduction/6_pwntools.html">
+            
+                <a href="../fast_food/introduction/6_pwntools.html">
+            
+                    
+                    Pwntools CheatSheet
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../pwning/1_beginning.html">
+            
+                <a href="../pwning/1_beginning.html">
+            
+                    
+                    Fast Pwning
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.2.1" data-path="../fast_food/pwning/2_protections.html">
+            
+                <a href="../fast_food/pwning/2_protections.html">
+            
+                    
+                    Proteções de binários
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.2" data-path="../fast_food/pwning/3_bof.html">
+            
+                <a href="../fast_food/pwning/3_bof.html">
+            
+                    
+                    Buffer Overflow Simples
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.3" data-path="../fast_food/pwning/4_bof_callfunction.html">
+            
+                <a href="../fast_food/pwning/4_bof_callfunction.html">
+            
+                    
+                    Buffer Overflow - Variáveis
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.4" data-path="../fast_food/pwning/5_bof_shellcode.html">
+            
+                <a href="../fast_food/pwning/5_bof_shellcode.html">
+            
+                    
+                    Buffer Overflow - ShellCode
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.5" data-path="../fast_food/pwning/6_format_strings.html">
+            
+                <a href="../fast_food/pwning/6_format_strings.html">
+            
+                    
+                    Format Strings
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Assembly</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="2-assembly">2. Assembly</h1>
+<h2 id="21-o-que-&#xE9;-assembly">2.1. O que &#xE9; Assembly?</h2>
+<p>Assembly ou linguagem de montagem &#xE9; uma <strong>linguagem de programa&#xE7;&#xE3;o</strong>, assim como C, Python, JavaScript, etc. Por&#xE9;m se destaca por ser a linguagem mais pr&#xF3;xima do c&#xF3;digo que o processador realmente executa. O C abstrai muitas das opera&#xE7;&#xF5;es.</p>
+<p>Tome como exemplo a opera&#xE7;&#xE3;o de declarar uma vari&#xE1;vel no C: <code>int a = 10</code>. Voc&#xEA; acha mesmo que o processador apenas recebe isso e j&#xE1; tem um lugar pronto para a vari&#xE1;vel <code>a</code>, uma caixinha onde &#xE9; guardado 10? N&#xE3;o, muito longe disso. Uma s&#xE9;rie de opera&#xE7;&#xF5;es que o processador realmente executa s&#xE3;o escondidas de voc&#xEA;, para simplificar o trabalho do programador.</p>
+<p>Algumas linguagens de programa&#xE7;&#xE3;o abstraem mais do que outras. O Assembly &#xE9; <strong>muito pr&#xF3;ximo do c&#xF3;digo de m&#xE1;quina, muito verboso</strong>. O C j&#xE1; abstrai mais, mas &#xE9; r&#xED;gido e permite manipula&#xE7;&#xE3;o de mem&#xF3;ria. J&#xE1; o Python seria o &quot;n&#xED;vel mais f&#xE1;cil&quot; das linguagens de programa&#xE7;&#xE3;o, pois tem in&#xFA;meras funcionalidades prontas que facilitam seu trabalho.</p>
+<p>Podemos ver isso com a opera&#xE7;&#xE3;o de soma de dois n&#xFA;meros.</p>
+<p>C&#xF3;digo de m&#xE1;quina:</p>
+<pre><code class="lang-Bin">01001000 11000111 11000111 00000101 00000000 00000000 00000000
+01001000 11000111 11000110 00000011 00000000 00000000 00000000
+01001000 00000001 11110111
+</code></pre>
+<p>C&#xF3;digo de m&#xE1;quina em hexadecimal (cada hexadecimal representa 1 byte. Se acostume com isso, pois analisamos informa&#xE7;&#xF5;es na mem&#xF3;ria desse jeito, o famoso <code>hexdump</code>):</p>
+<pre><code class="lang-hex">48 c7 c7 05 00 00 00 48 c7 c6 03 00 00 00 48 01 f7
+</code></pre>
+<p>C&#xF3;digo em Assembly:</p>
+<pre><code class="lang-Assembly">mov rdi, 0x5
+mov rsi, 0x3 
+add rdi, rsi
+</code></pre>
+<p>C&#xF3;digo em C:</p>
+<pre><code class="lang-C"><span class="hljs-keyword">int</span> a = <span class="hljs-number">5</span>;
+<span class="hljs-keyword">int</span> b = <span class="hljs-number">3</span>;
+<span class="hljs-keyword">int</span> resultado = a + b;
+</code></pre>
+<p>C&#xF3;digo em Python:</p>
+<pre><code class="lang-py">resultado = <span class="hljs-number">5</span> + <span class="hljs-number">3</span>
+</code></pre>
+<p>N&#xE3;o h&#xE1; linguagem de programa&#xE7;&#xE3;o melhor do que outra, apenas aquela que &#xE9; uma ferramenta boa para voc&#xEA;. Python oferece agilidade, enquanto C oferece otimiza&#xE7;&#xE3;o e robustez, ao passo que Assembly &#xE9; pr&#xF3;xima do c&#xF3;digo de m&#xE1;quina, &#xFA;til para otimiza&#xE7;&#xE3;o e tamb&#xE9;m an&#xE1;lise de Engenharia Reversa, como veremos aqui.</p>
+<p>O Assembly possui <strong>acesso direto ao hardware</strong>, de modo que permite manipular diretamente os registradores da CPU (falaremos mais &#xE0; frente sobre isso). Cada instru&#xE7;&#xE3;o (linha) de um c&#xF3;digo Assembly geralmente corresponde a uma &#xFA;nica instru&#xE7;&#xE3;o de m&#xE1;quina, assim temos uma propor&#xE7;&#xE3;o 1:1, algo que n&#xE3;o acontece no C e Python.</p>
+<h2 id="22-por-que-assembly">2.2 Por que Assembly?</h2>
+<p>Todo c&#xF3;digo, qualquer que seja a linguagem, &#xE9; compilado e transformado em c&#xF3;digo de m&#xE1;quina. Engenharia reversa &#xE9; a arte de abrir esses bin&#xE1;rios e entend&#xEA;-los, e para isso precisamos entender a sintaxe do Assembly, pois ela torna o c&#xF3;digo de m&#xE1;quina leg&#xED;vel. Ou seja, ela traduz 0 e 1 em instru&#xE7;&#xF5;es que podemos entender. O assembly n&#xE3;o &#xE9; t&#xE3;o trivial, mas uma vez que voc&#xEA; se acostuma, te ajuda perfeitamente a entender quealquer bin&#xE1;rio.</p>
+<p>Al&#xE9;m disso, as vulnerabilidades que s&#xE3;o exploradas aqui e em CTF&apos;s geralmente necessitam que  exploremos o Assembly e a organiza&#xE7;&#xE3;o interna do c&#xF3;digo, para ver como podemos abusar dessa estrutura.</p>
+<h2 id="23-registradores">2.3 Registradores</h2>
+<p>Registradores s&#xE3;o <strong>locais de mem&#xF3;ria tempor&#xE1;ria dentro do processador</strong>. Eles possuem uma <strong>quantidade pequena de mem&#xF3;ria</strong>, em geral 8 bytes, mas possuem <strong>alta velocidade de acesso e opera&#xE7;&#xE3;o</strong> (muito mais r&#xE1;pido que mem&#x1E3F;oria RAM).</p>
+<p>Basicamente, os registradores s&#xE3;o utilizados para armazenar informa&#xE7;&#xE3;o &#xFA;til, como valores de vari&#xE1;veis, endere&#xE7;os de mem&#xF3;ria para outros lugares (ponteiros), etc. Os registradores sempre estar&#xE3;o presentes em c&#xF3;digo assembly, pois enviar valores diretamente para registradores no processador &#xE9; o modo mais otimizado de se realizar uma opera&#xE7;&#xE3;o.</p>
+<div styles="display: block; text-align:center">
+    <img src="images/registers.png">
+</div>
+
+<p>Na <strong>arquitetura x64 (64 bits = 8 bytes)</strong>, os registradores da CPU do computador <strong>possuem 8 bytes cada</strong>. Na <strong>arquitetura x86 (32 bits = 4 bytes)</strong>, os registradores possuem <strong>4 bytes cada</strong>. Cada programa <strong>.exe</strong> (ou qualquer outra extens&#xE3;o em c&#xF3;digo de m&#xE1;quina) segue uma dessas duas arquiteturas.</p>
+<p>Abaixo, temos uma lista de registradores e do modo como cada um &#xE9; usado em um programa.</p>
+<table>
+<thead>
+<tr>
+<th>8 Byte Register</th>
+<th>Lower 4 Bytes</th>
+<th>Lower 2 Bytes</th>
+<th>Lower Byte</th>
+<th>Uso principal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>rbp</td>
+<td>ebp</td>
+<td>bp</td>
+<td>bpl</td>
+<td>Base Pointer (Ponteiro de Base do Frame da Pilha)</td>
+</tr>
+<tr>
+<td>rsp</td>
+<td>esp</td>
+<td>sp</td>
+<td>spl</td>
+<td>Stack Pointer (Ponteiro do Topo da Pilha)</td>
+</tr>
+<tr>
+<td>rip</td>
+<td>eip</td>
+<td>(N/A)</td>
+<td>(N/A)</td>
+<td>Instruction Pointer (Ponteiro da Pr&#xF3;xima Instru&#xE7;&#xE3;o)</td>
+</tr>
+<tr>
+<td>rax</td>
+<td>eax</td>
+<td>ax</td>
+<td>al</td>
+<td>Acumulador (Valor de Retorno, Opera&#xE7;&#xF5;es Aritm&#xE9;ticas)</td>
+</tr>
+<tr>
+<td>rbx</td>
+<td>ebx</td>
+<td>bx</td>
+<td>bl</td>
+<td>Base (Ponteiro de Dados, Valor Preservado em Chamadas)</td>
+</tr>
+<tr>
+<td>rcx</td>
+<td>ecx</td>
+<td>cx</td>
+<td>cl</td>
+<td>Contador (Contador para Loops/Shifts, 3&#xBA; Argumento)</td>
+</tr>
+<tr>
+<td>rdx</td>
+<td>edx</td>
+<td>dx</td>
+<td>dl</td>
+<td>Dados (Extens&#xE3;o do Acumulador, 4&#xBA; Argumento)</td>
+</tr>
+<tr>
+<td>rsi</td>
+<td>esi</td>
+<td>si</td>
+<td>sil</td>
+<td>Source Index (Ponteiro Fonte para Opera&#xE7;&#xF5;es de String/Mem&#xF3;ria, 2&#xBA; Argumento)</td>
+</tr>
+<tr>
+<td>rdi</td>
+<td>edi</td>
+<td>di</td>
+<td>dil</td>
+<td>Destination Index (Ponteiro Destino para String/Mem&#xF3;ria, 1&#xBA; Argumento)</td>
+</tr>
+<tr>
+<td>r8</td>
+<td>r8d</td>
+<td>r8w</td>
+<td>r8b</td>
+<td>5&#xBA; Argumento de Fun&#xE7;&#xE3;o (Uso Geral)</td>
+</tr>
+<tr>
+<td>r9</td>
+<td>r9d</td>
+<td>r9w</td>
+<td>r9b</td>
+<td>6&#xBA; Argumento de Fun&#xE7;&#xE3;o (Uso Geral)</td>
+</tr>
+<tr>
+<td>r10</td>
+<td>r10d</td>
+<td>r10w</td>
+<td>r10b</td>
+<td>Tempor&#xE1;rio (Uso Geral, N&#xE3;o Preservado em Chamadas)</td>
+</tr>
+<tr>
+<td>r11</td>
+<td>r11d</td>
+<td>r11w</td>
+<td>r11b</td>
+<td>Tempor&#xE1;rio (Uso Geral, N&#xE3;o Preservado em Chamadas)</td>
+</tr>
+<tr>
+<td>r12</td>
+<td>r12d</td>
+<td>r12w</td>
+<td>r12b</td>
+<td>Local (Uso Geral, Preservado em Chamadas)</td>
+</tr>
+<tr>
+<td>r13</td>
+<td>r13d</td>
+<td>r13w</td>
+<td>r13b</td>
+<td>Local (Uso Geral, Preservado em Chamadas)</td>
+</tr>
+<tr>
+<td>r14</td>
+<td>r14d</td>
+<td>r14w</td>
+<td>r14b</td>
+<td>Local (Uso Geral, Preservado em Chamadas)</td>
+</tr>
+<tr>
+<td>r15</td>
+<td>r15d</td>
+<td>r15w</td>
+<td>r15b</td>
+<td>Local (Uso Geral, Preservado em Chamadas)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="24-flags">2.4 Flags</h2>
+<p><strong>Existe um registrador que cont&#xE9;m flags</strong>, o <strong>RFLAGS</strong> (x64 = 64 bits) ou <strong>EFLAGS</strong> (x86 = 32 bits). Cada bit do registrador &#xE9; uma flag diferente.</p>
+<table>
+<thead>
+<tr>
+<th>Bit</th>
+<th>Flag</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>00</td>
+<td>Carry Flag</td>
+</tr>
+<tr>
+<td>01</td>
+<td>always 1</td>
+</tr>
+<tr>
+<td>02</td>
+<td>Parity Flag</td>
+</tr>
+<tr>
+<td>03</td>
+<td>always 0</td>
+</tr>
+<tr>
+<td>04</td>
+<td>Adjust Flag</td>
+</tr>
+<tr>
+<td>05</td>
+<td>always 0</td>
+</tr>
+<tr>
+<td>06</td>
+<td>Zero Flag</td>
+</tr>
+<tr>
+<td>07</td>
+<td>Sign Flag</td>
+</tr>
+<tr>
+<td>08</td>
+<td>Trap Flag</td>
+</tr>
+<tr>
+<td>09</td>
+<td>Interruption Flag     </td>
+</tr>
+<tr>
+<td>10</td>
+<td>Direction Flag</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Overflow Flag</td>
+</tr>
+<tr>
+<td>12</td>
+<td>I/O Privilege Field lower bit</td>
+</tr>
+<tr>
+<td>13</td>
+<td>I/O Privilege Field higher bit</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Nested Task Flag</td>
+</tr>
+<tr>
+<td>15</td>
+<td>Resume Flag</td>
+</tr>
+</tbody>
+</table>
+<p>Esse registrador &#xE9; usado, por exemplo, para a opera&#xE7;&#xE3;o de comparar se dois n&#xFA;meros s&#xE3;o iguais. Para verificar se <code>a &gt; b</code>:</p>
+<ul>
+<li><code>cmp a, b</code> (instru&#xE7;&#xE3;o assembly)<ul>
+<li>Faz <code>a - b</code></li>
+<li>Se d&#xE1; zero, <strong>Zero Flag</strong> (bit 06) fica como <code>1</code>.</li>
+<li>Se d&#xE1; diferente de zero, <strong>Zero Flag</strong> (bit 06) fica como <code>0</code>.<ul>
+<li>Se d&#xE1; negativo, <strong>Sign Flag</strong> (bit 07) fica como <code>1</code></li>
+<li>Se d&#xE1; positivo, <strong>Sign Flag</strong> (bit 07) fica como <code>0</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Resultado da subtra&#xE7;&#xE3;o &#xE9; descartado, mas as Flags s&#xE3;o utilizadas como refer&#xEA;ncia para os pr&#xF3;ximos passos.</li>
+</ul>
+<p>Isso sempre ir&#xE1; ocorrer quando houver um <code>IF/ELSE</code>, por exemplo, no c&#xF3;digo original.</p>
+<h2 id="25-instru&#xE7;&#xF5;es-assembly-comuns">2.5 Instru&#xE7;&#xF5;es Assembly comuns</h2>
+<h3 id="words">Words</h3>
+<p>Words n&#xE3;o s&#xE3;o comandos, mas indicam o tamanho do tipo de dado em Assembly.</p>
+<ul>
+<li>WORD = <strong>2 bytes de dados</strong>.</li>
+<li>DWORD = <strong>4 bytes de dados</strong>.</li>
+<li>QWORD = <strong>8 bytes de dados</strong>.</li>
+</ul>
+<h3 id="coment&#xE1;rios">Coment&#xE1;rios</h3>
+<p>Para coment&#xE1;rios, usa-se <code>;</code></p>
+<h3 id="mov">mov</h3>
+<p><strong>Move dados de um registrador para outro</strong> (segundo para o primeiro). </p>
+<p>Ex: <code>mov rax, rdx</code> (move dados de rdx para rax)</p>
+<h3 id="dereference">dereference</h3>
+<p><strong>colchetes referenciam dados ao qual um ponteiro aponta</strong>. Ou seja, se <code>RBP-0x8</code> = <code>0xfffff72c</code> (endere&#xE7;o), ent&#xE3;o <code>[RBP-0x8]</code> = 10 (valor da vari&#xE1;vel).</p>
+<p>Ex: <code>mov rax, [rdx]</code></p>
+<h3 id="lea">lea</h3>
+<p><strong>Calcula o endere&#xE7;o do segundo operando</strong>, e move para o primeiro.</p>
+<p>Ex: <code>lea rdi, [rbx+0x10]</code> (move o endere&#xE7;o rbx+0x10 para o registrador rdi)</p>
+<h3 id="add">add</h3>
+<p><strong>Adiciona dois valores</strong> e armazena no primeiro operando.</p>
+<p>Ex: <code>add rax, rdx</code> (rax = rax + rdx)</p>
+<h3 id="sub">sub</h3>
+<p><strong>Subtrai o segundo operando do primeiro</strong> e armazena no primeiro.</p>
+<p>Ex: <code>sub rsp, 0x10</code> (<code>rsp</code> = <code>rsp</code> - <code>0x10</code>)</p>
+<h3 id="xor">xor</h3>
+<p><strong>Faz o xor nos dois argumentos</strong>, e armazena no primeiro operando. and e or s&#xE3;o semelhantes.</p>
+<p>Ex: <code>xor rdx, rax</code></p>
+<h3 id="push">push</h3>
+<p><strong>Cresce a stack em 8 ou 4 bytes</strong> (para x64, ou 4 para x86), <strong>depois</strong> <strong>adiciona o conte&#xFA;do do registrador para o topo da stack</strong></p>
+<p>Ex: <code>push rax</code></p>
+<h3 id="pop">pop</h3>
+<p>Tira 8 bytes do topo da stack e armazena no argumento. Depois encolhe a stack.</p>
+<p>Ex: <code>pop rax</code> (Retira dado do topo da Stack e armazena em RAX)</p>
+<h3 id="jmp">jmp</h3>
+<p><strong>Pula para um endere&#xE7;o de instru&#xE7;&#xE3;o</strong>. Redireciona a execu&#xE7;&#xE3;o do c&#xF3;digo.</p>
+<p>Ex: <code>jmp 0x60201012</code></p>
+<p>&#xC9; uma redu&#xE7;&#xE3;o de c&#xF3;digo, e &#xE9; igual a:</p>
+<p><code>mov RIP, 0x60201012</code></p>
+<p>(Alterar o RIP altera onde o c&#xF3;digo estar&#xE1; sendo executado)</p>
+<h3 id="call">call</h3>
+<p>&#xC9; uma redu&#xE7;&#xE3;o de dois comandos. Utilizado sempre que se chama uma fun&#xE7;&#xE3;o no c&#xF3;digo.</p>
+<ol>
+<li><code>push RIP</code> - empilha Return Address na stack. &#xC9; o endere&#xE7;o de retorno da PR&#xD3;XIMA instru&#xE7;&#xE3;o a ser executada na fun&#xE7;&#xE3;o atual quando a nova fun&#xE7;&#xE3;o retornar.</li>
+<li><code>jmp function</code>- Salta para as linhas de instru&#xE7;&#xE3;o da nova fun&#xE7;&#xE3;o.</li>
+</ol>
+<h3 id="ret">ret</h3>
+<p>Depois que a fun&#xE7;&#xE3;o finaliza, <strong>a instru&#xE7;&#xE3;o <code>ret</code> &#xE9; chamada</strong>. Ela consiste em uma redu&#xE7;&#xE3;o de comando:</p>
+<p><code>pop RIP</code> - Desempilha topo da stack (que deve ser o return address) e coloca no RIP (registrador que guarda o endere&#xE7;o de onde est&#xE1; sendo executado c&#xF3;digo)</p>
+<p>Voc&#xEA; pode se perguntar: Mas o topo da stack n&#xE3;o tem as vari&#xE1;veis, RBP antigo, etc? Sim, exato. Por isso, antes da fun&#xE7;&#xE3;o finalizar, temos ajustes na stack:</p>
+<pre><code class="lang-assembly">mov RBP, RSP ; RSP (topo da stack) agora &#xE9; RBP, que cont&#xE9;m endere&#xE7;o do RBP da fun&#xE7;&#xE3;o anterior
+
+pop RBP ; Faz o pop, restaurando o endere&#xE7;o do RBP da fun&#xE7;&#xE3;o anterior
+ret
+</code></pre>
+<p>(OBS: <code>;</code> &#xE9; um <strong>coment&#xE1;rio</strong> em assembly)</p>
+<p>E o que acontece com as vari&#xE1;veis e todas as outras coisas que estavam na stack da fun&#xE7;&#xE3;o? Ficam l&#xE1;, como lixo de mem&#xF3;ria, sem serem modificadas, at&#xE9; que um programa sobrescreva elas.</p>
+<h3 id="cmp">cmp</h3>
+<p><strong>Compara dois operandos, faz o primeiro menos o segundo e checa se o resultado &#xE9; maior/menor/igual a zero</strong>. Dependendo do valor, define uma flag de acordo.</p>
+<p>Ex: <code>cmp RAX, 0x10</code></p>
+<h3 id="jnzjz-jumpt-if-not-zerojump-if-zero">jnz/jz (jumpt if not zero/jump if zero)</h3>
+<p>Similar ao <code>jmp</code>. Mas apenas executa dependendo do status da zero flag.</p>
+<p>Existem outros, como <code>jle</code> (jump if less or equal).</p>
+<h2 id="26-stack-em-arquitetura-de-programas-pilha">2.6 Stack em Arquitetura de programas (Pilha)</h2>
+<h3 id="261-conceito-de-stack">2.6.1 Conceito de Stack</h3>
+<p>A stack &#xE9; um conceito simples de Estrutura de Dados. Consiste apenas em uma ideia de como organizar informa&#xE7;&#xE3;o. Imagine que voc&#xEA; possui um tubo onde voc&#xEA; pode colocar bolinhas, somente pelo topo. Se voc&#xEA; enxer o tubo, para retirar bolinhas, voc&#xEA; precisar&#xE1; come&#xE7;ar a remover pelas bolinhas mais recentes que voc&#xEA; colocou.</p>
+<p>A Stack &#xE9; basicamente isso. Come&#xE7;amos a resolver, ou <strong>desempilhar</strong> as coisas come&#xE7;ando das mais recentes para as mais antigas. Na Stack, <strong>o &#xFA;ltimo ser&#xE1; o primeiro</strong>.</p>
+<p>A stack &#xE9; uma estrutura de dados com duas opera&#xE7;&#xF5;es: push e pop.</p>
+<ul>
+<li><code>push</code> - Coloca novo valor no topo da stack</li>
+<li><code>pop</code> - Remove valor do topo da stack e extrai seu valor</li>
+</ul>
+<p><img src="images/stack_data_structure.png" alt="alt text"></p>
+<p>Imagine agora que temos uma fun&#xE7;&#xE3;o que chama outra fun&#xE7;&#xE3;o, e esta fun&#xE7;&#xE3;o chama outra fun&#xE7;&#xE3;o. <strong>Fun&#xE7;&#xE3;o &gt; Fun&#xE7;&#xE3;o &gt;  Fun&#xE7;&#xE3;o</strong>. Quando a ultima fun&#xE7;&#xE3;o retorna, devemos come&#xE7;ar a resolver as coisas pela primeira fun&#xE7;&#xE3;o? N&#xE3;o. Vamos resolvendo pela ordem inversa, at&#xE9; que a segunda retorne na primeira, e a primeira conclua sua execu&#xE7;&#xE3;o.</p>
+<pre><code class="lang-C"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">function1</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span></span>{
+    <span class="hljs-keyword">return</span> function2(n) + <span class="hljs-number">1</span>;
+}
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">function2</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span></span>{
+    <span class="hljs-keyword">return</span> function3(n) + <span class="hljs-number">1</span>;
+}
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">function3</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span></span>{
+    <span class="hljs-keyword">return</span> n + <span class="hljs-number">1</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-keyword">int</span> result = function1(<span class="hljs-number">10</span>);
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>Dessa forma, o conceito de Stack &#xE9; utilizado na arquitetura de programas para organizar o fluxo do programa e o escopo de fun&#xE7;&#xF5;es.</p>
+<h3 id="262-stack-para-assembly">2.6.2 Stack para Assembly</h3>
+<p>A stack &#xE9; uma <strong>regi&#xE3;o cont&#xED;nua de mem&#xF3;ria no computador onde as vari&#xE1;veis locais ser&#xE3;o armazenadas</strong>. Ela &#xE9; uma estrutura de dados com duas opera&#xE7;&#xF5;es: <strong>PUSH</strong> (adicionar valor ao topo) e <strong>POP</strong> (retirar valor do topo).</p>
+<p>No assembly:</p>
+<ul>
+<li>Instru&#xE7;&#xE3;o <code>push</code> - <strong>Empilha</strong> valor na stack</li>
+<li>Instru&#xE7;&#xE3;o <code>pop</code> - <strong>Desempilha</strong> valor na stack</li>
+<li>Registrador <code>RSP</code> - Possui ponteiro para <strong>topo da stack</strong> (endere&#xE7;o do &#xFA;ltimo bloco de mem&#xF3;ria correspondente &#xE0; stack)</li>
+<li>Registrador <code>RBP</code> - Possui ponteiro para a <strong>base da stack</strong> (endere&#xE7;o do primeiro bloco de mem&#xF3;ria correspondente &#xE0; stack)</li>
+</ul>
+<p>Na mem&#xF3;ria, <strong>o topo da pilha &quot;cresce negativamente&quot;</strong>. Assim, sempre que um valor &#xE9; empilhado na stack, o valor de esp &#xE9; decrescido.</p>
+<p>Lembre-se que <strong>RSP e RBP N&#xC3;O EST&#xC3;O NA STACK, eles s&#xE3;o apenas ponteiros</strong>, ou seja, cont&#xE9;m os endere&#xE7;os que s&#xE3;o a base e o topo da stack.</p>
+<p>A stack cont&#xE9;m 4 elementos b&#xE1;sicos, nesta ordem:</p>
+<ol>
+<li><strong>Par&#xE2;metros</strong> da <strong>fun&#xE7;&#xE3;o atual</strong> (isto acontece apenas se houverem mais par&#xE2;metros do que a quantidade de registradores dispon&#xED;veis. <strong>Caso contr&#xE1;rio, os par&#xE2;metros s&#xE3;o passados pelos registradores</strong> <code>rdi</code>, <code>rsi</code>, <code>rdx</code>)</li>
+<li><strong>Endere&#xE7;o de retorno</strong> para continuar a partir da <strong>fun&#xE7;&#xE3;o antiga</strong> (ou seja, a pr&#xF3;xima instru&#xE7;&#xE3;o ap&#xF3;s a chamada da nova fun&#xE7;&#xE3;o)<pre><code class="lang-C"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{ 
+ imprimir_soma(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>);
+ <span class="hljs-keyword">int</span> a  = <span class="hljs-number">0</span>; <span class="hljs-comment">// Return Address &#xE9; um ponteiro para essa instru&#xE7;&#xE3;o, depois da chamada de fun&#xE7;&#xE3;o</span>
+ <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+</li>
+<li><strong>RBP</strong> da <strong>fun&#xE7;&#xE3;o antiga</strong> (ou seja, a fun&#xE7;&#xE3;o que chamou a fun&#xE7;&#xE3;o atual. Afinal, alguma hora iremos retornar para ela, e voltar a trabalhar com as vari&#xE1;veis locais dela, que ainda estar&#xE3;o armazenados na stack, certo?)</li>
+<li><strong>Vari&#xE1;veis locais</strong> da <strong>fun&#xE7;&#xE3;o atual</strong></li>
+</ol>
+<div styles="display: block; text-align:center">
+    <img src="images/simple_stack.png">
+</div>
+
+<p>Um ponto importante &#xE9; que, no c&#xF3;digo assembly, <strong>todos os dados presentes na stack s&#xE3;o acessados com base no RBP</strong> (<code>RBP-0x4</code> = Endere&#xE7;o para o qual RBP aponta acrescentado de 4 bytes).</p>
+<p>(Lembre-se que, quando mais alto o valor na pilha, ou seja, quanto mais pr&#xF3;ximo de RSP, mais decrescemos o valor de RBP, pois a stack cresce negativamente)</p>
+<h3 id="263-exemplo-de-uso-de-stack">2.6.3 Exemplo de Uso de Stack</h3>
+<p>Abaixo, temos um c&#xF3;digo em C e uma simula&#xE7;&#xE3;o de como eles estariam na stack.</p>
+<p>C&#xF3;digo em <strong>C</strong>:</p>
+<pre><code class="lang-C"><span class="hljs-comment">// Compilado para arquitetura x86 (32 bits) com otimiza&#xE7;&#xE3;o m&#xED;nima (ex: -O0)</span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">simple_function</span><span class="hljs-params">(<span class="hljs-keyword">int</span> p1, <span class="hljs-keyword">int</span> p2, <span class="hljs-keyword">int</span> p3)</span> </span>{
+    <span class="hljs-comment">// Estas ser&#xE3;o as Vari&#xE1;veis Locais 1, 2 e 3</span>
+    <span class="hljs-keyword">int</span> local1 = p1 * <span class="hljs-number">2</span>;
+    <span class="hljs-keyword">int</span> local2 = p2 + <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">int</span> local3 = p3 - <span class="hljs-number">1</span>;
+
+    <span class="hljs-comment">// Usar todas as vari&#xE1;veis garante que o compilador as crie na stack.</span>
+    local1 = local2 + local3;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-comment">// Chamada com 3 par&#xE2;metros</span>
+    simple_function(<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>; <span class="hljs-comment">// Return address da simple_function aponta para aqui (chamada + 1)</span>
+}
+</code></pre>
+<p>C&#xF3;digo em <strong>Assembly</strong>:</p>
+<pre><code class="lang-assembly">asm
+section .text
+    global simple_function
+    global main
+
+; int simple_function(int p1, int p2, int p3)
+simple_function:
+    ; Pr&#xF3;logo
+    push rbp
+    mov rbp, rsp
+
+    ; local1 = p1 * 2
+    mov eax, edi        ; Copia p1 (EDI) para EAX
+    shl eax, 1          ; Deslocamento de bits para a esquerda (multiplica por 2)
+    ; local1 fica armazenado em EAX
+
+    ; local2 = p2 + 1
+    mov ebx, esi        ; Copia p2 (ESI) para EBX
+    add ebx, 1          ; Adiciona 1 de EBX
+
+    ; local3 = p3 - 1
+    mov ecx, edx        ; Copia p3 (EDX) para ECX
+    sub ecx, 1        ; Subtrai 1 de ECX
+
+    ; local1 = local2 + local3
+    mov eax, ebx        ; Copia local2 para EAX (EAX &#xE9; sobrescrito)
+    add eax, ecx        ; Adiciona ECX de EAX (local2 + local3)
+
+    ; Ep&#xED;logo
+    pop rbp        ; Desempilha valor do RBP da fun&#xE7;&#xE3;o anterior salva
+    ret        ; Retorna
+
+; int main()
+main:
+    ; Prologue
+    push rbp
+    mov rbp, rsp
+
+    ; Call simple_function(10, 20, 30)
+    mov edi, 10
+    mov esi, 20
+    mov edx, 30
+    call simple_function
+
+    ; Return 0
+    mov eax, 0
+
+    ; Epilogue
+    pop rbp
+    ret
+</code></pre>
+<p><strong>Stack</strong> ao entrar na fun&#xE7;&#xE3;o <code>simple_function</code>:</p>
+<div styles="display: block; text-align:center">
+    <img src="images/stack.png">
+</div>
+
+<p>Perceba que a Stack est&#xE1; de 4 em 4 bytes (arquitetura x86 = 32 bits). Tamb&#xE9;m perceba que localizamos as vari&#xE1;veis com base no EBP: </p>
+<ul>
+<li><strong>[EBP+16]</strong> = par&#xE2;metro p3</li>
+<li><strong>[EBP+12]</strong> = Par&#xE2;metro p2</li>
+<li><strong>[EBP+8]</strong> = Par&#xE2;metro p1</li>
+<li><strong>[EBP+4]</strong> = Endere&#xE7;o de retorno</li>
+<li><strong>[EBP]</strong> = Valor do EBP da fun&#xE7;&#xE3;o anterior</li>
+<li><strong>[EBP-4]</strong> = local1 </li>
+<li><strong>[EBP-8]</strong> = local2</li>
+<li><strong>[EBP-12]</strong> = local3</li>
+</ul>
+<h2 id="27-assembly-na-pr&#xE1;tica">2.7 Assembly na pr&#xE1;tica</h2>
+<p>Come&#xE7;aremos com alguns problemas b&#xE1;sicos de Engenharia Reversa de Assembly.</p>
+<p>Os problemas s&#xE3;o do reposit&#xF3;rio: <a href="https://github.com/kablaa/CTF-Workshop/blob/master/Reversing/Challenges/IfThen/if_then" target="_blank">kablaa-CTF-Workshop</a>.</p>
+<h3 id="hello-world">Hello World</h3>
+<p>Arquivo: <a href="reversing-assembly/hello_world">hello_word</a></p>
+<p>Em Linux, podemos usar o seguinte comando para olhar o c&#xF3;digo em Assembly: </p>
+<pre><code>$    objdump -D hello_world -M intel | less
+</code></pre><p>Depois de procurar pela string <code>main</code> (que &#xE9; a fun&#xE7;&#xE3;o principal), vemos isso:</p>
+<pre><code class="lang-assembly">080483fb &lt;main&gt;:
+ 80483fb:       8d 4c 24 04             lea    ecx,[esp+0x4]
+ 80483ff:       83 e4 f0                and    esp,0xfffffff0
+ 8048402:       ff 71 fc                push   DWORD PTR [ecx-0x4]
+ 8048405:       55                      push   ebp
+ 8048406:       89 e5                   mov    ebp,esp
+ 8048408:       51                      push   ecx
+ 8048409:       83 ec 04                sub    esp,0x4
+ 804840c:       83 ec 0c                sub    esp,0xc
+ 804840f:       68 b0 84 04 08          push   0x80484b0
+ 8048414:       e8 b7 fe ff ff          call   80482d0 &lt;puts@plt&gt;
+ 8048419:       83 c4 10                add    esp,0x10
+ 804841c:       b8 00 00 00 00          mov    eax,0x0
+ 8048421:       8b 4d fc                mov    ecx,DWORD PTR [ebp-0x4]
+ 8048424:       c9                      leave  
+ 8048425:       8d 61 fc                lea    esp,[ecx-0x4]
+ 8048428:       c3                      ret    
+ 8048429:       66 90                   xchg   ax,ax
+ 804842b:       66 90                   xchg   ax,ax
+ 804842d:       66 90                   xchg   ax,ax
+ 804842f:       90                      nop
+</code></pre>
+<p>Olhando para o c&#xF3;digo, vemos uma function call para <code>puts</code>:</p>
+<pre><code class="lang-assembly">push   0x80484b0
+call   80482d0 &lt;puts@plt&gt;
+</code></pre>
+<p>O <code>puts</code> &#xE9; uma fun&#xE7;&#xE3;o que imprime algo no terminal como texto. O resto n&#xE3;o &#xE9; nada muito interessante. Assim, sabemos que algo ser&#xE1; impresso na sa&#xED;da do programa. Se executarmos o c&#xF3;digo:</p>
+<pre><code>$    ./hello_world
+hello world!
+</code></pre><h3 id="if-then">If Then</h3>
+<p>Come&#xE7;amos vendo o c&#xF3;digo em assembly com <code>objdump</code>:</p>
+<pre><code>$    objdump -D if_then -M intel | less
+</code></pre><p>Ap&#xF3;s o comando, procuramos pela fun&#xE7;&#xE3;o main:</p>
+<pre><code class="lang-assmebly">080483fb &lt;main&gt;:
+ 80483fb:       8d 4c 24 04             lea    ecx,[esp+0x4]
+ 80483ff:       83 e4 f0                and    esp,0xfffffff0
+ 8048402:       ff 71 fc                push   DWORD PTR [ecx-0x4]
+ 8048405:       55                      push   ebp
+ 8048406:       89 e5                   mov    ebp,esp
+ 8048408:       51                      push   ecx
+ 8048409:       83 ec 14                sub    esp,0x14
+ 804840c:       c7 45 f4 0a 00 00 00    mov    DWORD PTR [ebp-0xc],0xa
+ 8048413:       83 7d f4 0a             cmp    DWORD PTR [ebp-0xc],0xa
+ 8048417:       75 10                   jne    8048429 &lt;main+0x2e&gt;
+ 8048419:       83 ec 0c                sub    esp,0xc
+ 804841c:       68 c0 84 04 08          push   0x80484c0
+ 8048421:       e8 aa fe ff ff          call   80482d0 &lt;puts@plt&gt;
+ 8048426:       83 c4 10                add    esp,0x10
+ 8048429:       b8 00 00 00 00          mov    eax,0x0
+ 804842e:       8b 4d fc                mov    ecx,DWORD PTR [ebp-0x4]
+ 8048431:       c9                      leave  
+ 8048432:       8d 61 fc                lea    esp,[ecx-0x4]
+ 8048435:       c3                      ret    
+ 8048436:       66 90                   xchg   ax,ax
+ 8048438:       66 90                   xchg   ax,ax
+ 804843a:       66 90                   xchg   ax,ax
+ 804843c:       66 90                   xchg   ax,ax
+ 804843e:       66 90                   xchg   ax,ax
+</code></pre>
+<p>Podemos ver que o valor <code>0xa</code> (10 em hexadecimal) &#xE9; carregado em <code>ebp-0xc</code>:</p>
+<pre><code>mov    DWORD PTR [ebp-0xc],0xa
+</code></pre><p>Imediatamente ap&#xF3;s isso, vemos que h&#xE1; uma instru&#xE7;&#xE3;o <code>cmp</code>, seguida de <code>jne</code>. Isso checa se &#xE9; o dado presente em <code>ebp-0xc</code> &#xE9; igual a 0xa. Se n&#xE3;o for igual, <code>jne</code> ir&#xE1; pular para <code>main+0x2e</code> (obs: <code>main+0x2e</code> &#xE9; a mesma coisa que pegar o endere&#xE7;o base da fun&#xE7;&#xE3;o main, ou seja, o endere&#xE7;o da primeira instru&#xE7;&#xE3;o, e acrescentar <code>0x2e</code> a ele)</p>
+<p>Como o valor &#xE9; igual, o jump n&#xE3;o ser&#xE1; executado:</p>
+<pre><code>cmp    DWORD PTR [ebp-0xc],0xa
+jne    8048429 &lt;main+0x2e&gt;
+</code></pre><p>Prosseguindo, &#xE9; feita uma chamada para a fun&#xE7;&#xE3;o puts, o que quer dizer que algo ser&#xE1; impresso na tela:</p>
+<pre><code>sub    esp,0xc
+push   0x80484c0
+call   80482d0 &lt;puts@plt&gt;
+</code></pre><p>Ap&#xF3;s rodar o c&#xF3;digo, podemos rod&#xE1;-lo e ver o que faz:</p>
+<pre><code>$    ./if_then
+x = ten
+</code></pre><h3 id="loop">Loop</h3>
+<p>Come&#xE7;amos vendo o c&#xF3;digo em assembly com <code>objdump</code>:</p>
+<pre><code>$    objdump -D loop -M intel | less
+</code></pre><p>Procurando pela fun&#xE7;&#xE3;o main, vemos isso:</p>
+<pre><code>080483fb &lt;main&gt;:
+ 80483fb:       8d 4c 24 04             lea    ecx,[esp+0x4]
+ 80483ff:       83 e4 f0                and    esp,0xfffffff0
+ 8048402:       ff 71 fc                push   DWORD PTR [ecx-0x4]
+ 8048405:       55                      push   ebp
+ 8048406:       89 e5                   mov    ebp,esp
+ 8048408:       51                      push   ecx
+ 8048409:       83 ec 14                sub    esp,0x14
+ 804840c:       c7 45 f4 00 00 00 00    mov    DWORD PTR [ebp-0xc],0x0
+ 8048413:       eb 17                   jmp    804842c &lt;main+0x31&gt;
+ 8048415:       83 ec 08                sub    esp,0x8
+ 8048418:       ff 75 f4                push   DWORD PTR [ebp-0xc]
+ 804841b:       68 c0 84 04 08          push   0x80484c0
+ 8048420:       e8 ab fe ff ff          call   80482d0 &lt;printf@plt&gt;
+ 8048425:       83 c4 10                add    esp,0x10
+ 8048428:       83 45 f4 01             add    DWORD PTR [ebp-0xc],0x1
+ 804842c:       83 7d f4 13             cmp    DWORD PTR [ebp-0xc],0x13
+ 8048430:       7e e3                   jle    8048415 &lt;main+0x1a&gt;
+ 8048432:       b8 00 00 00 00          mov    eax,0x0
+ 8048437:       8b 4d fc                mov    ecx,DWORD PTR [ebp-0x4]
+ 804843a:       c9                      leave  
+ 804843b:       8d 61 fc                lea    esp,[ecx-0x4]
+ 804843e:       c3                      ret    
+ 804843f:       90                      nop
+</code></pre><p>Nessa fun&#xE7;&#xE3;o, podemos ver que &#xE9; inicializada uma vari&#xE1;vel de stack em <code>ebp-0xc</code> como <code>0</code>, e depois pula para <code>0x804842c</code> (<code>main_0x31</code>):</p>
+<pre><code>mov    DWORD PTR [ebp-0xc],0x0
+jmp    804842c &lt;main+0x31&gt;
+</code></pre><p>Olhando para as instru&#xE7;&#xF5;es em <code>0x804842c</code> vemos isso:</p>
+<pre><code>cmp    DWORD PTR [ebp-0xc],0x13
+jle    8048415 &lt;main+0x1a&gt;
+</code></pre><p>Isso compara o valor da stack em <code>ebp-0xc</code> contra <code>0x13</code> (19 em decimal), e se for menor ou igual ent&#xE3;o ir&#xE1; pular para <code>0x8048415</code> (<code>0x80483fb+0x1a</code>). Isso nos leva a uma call para uma fun&#xE7;&#xE3;o printf:</p>
+<pre><code>sub    esp,0x8
+push   DWORD PTR [ebp-0xc]
+push   0x80484c0
+call   80482d0 &lt;printf@plt&gt;
+</code></pre><p>Parece que isso est&#xE1; imprimindo o cote&#xFA;do de <code>ebp-0xc</code> em algum tipo de format string. Depois disso podemos ver que o valor de <code>ebp-0xc</code> &#xE9; incremendado em 1, antes de fazer o <code>cmp</code> de novo:</p>
+<pre><code>add    DWORD PTR [ebp-0xc],0x1
+</code></pre><p>Certo, juntando todas as pe&#xE7;as, agora n&#xF3;s estamos provavelmente olhando para um loop for que vai rodar 20 vezes, e printar o contador de itera&#xE7;&#xE3;o em cada uma das itera&#xE7;&#xF5;es. Isso parece algo similar a:</p>
+<pre><code class="lang-C"><span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">20</span>; i ++)
+{
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, i);
+}
+</code></pre>
+<p>Quando rodamos o bin&#xE1;rio, vemos que isso &#xE9; verdade:</p>
+<pre><code>$    ./loop
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19
+</code></pre><h2 id="28-t&#xF3;pico-adicional-diretivas-assembly">2.8 T&#xF3;pico Adicional: Diretivas Assembly</h2>
+<p>Usamos assembly apenas para an&#xE1;lise, mas ele pode ser trabalhado como se fosse uma linguagem de programa&#xE7;&#xE3;o comum. Para compilar um c&#xF3;digo em assembly em c&#xF3;digo de m&#xE1;quina, temos o assembler.</p>
+<p>Dado isto, temos as <strong>diretivas</strong> no c&#xF3;digo assembly, que n&#xE3;o existem no execut&#xE1;vel final. Elas servem para guiar o Assembler na compila&#xE7;&#xE3;o do c&#xF3;digo:</p>
+<pre><code>Assembly Source (.s) &#x2192; Assembler &#x2192; Object File (.o) &#x2192; Linker &#x2192; Executable (.exe)
+     &#x2193;                    &#x2193;              &#x2193;               &#x2193;          &#x2193;
+  [DIRETIVAS]        [PROCESSADAS]   [REMOVIDAS]   [REMOVIDAS] [C&#xD3;DIGO PURO]
+</code></pre><p>Abaixo temos uma lista de diretivas, e o que elas fazem:</p>
+<pre><code class="lang-nasm">; Diretivas de Dados/Strings
+.byte 0x48, 0x31, 0xc0    ; 3 bytes: 48 31 c0
+.byte &apos;A&apos;,&apos;B&apos;,&apos;C&apos;          ; Bytes ASCII: 41 42 43
+.word 0x1234              ; 2 bytes: 34 12 (little-endian)
+.short 255                ; 2 bytes: FF 00
+.long 0x12345678          ; 4 bytes: 78 56 34 12
+.int 0x41414141           ; 4 bytes: 41 41 41 41
+.quad 0x4141414141414141  ; 8 bytes de &apos;A&apos;
+.quad 0x1234567890ABCDEF  ; 8 bytes qualquer
+.ascii &quot;Hello&quot;            ; 48 65 6c 6c 6f (sem \0)
+.ascii &quot;flag.txt&quot;         ; 66 6c 61 67 2e 74 78 74
+.asciz &quot;Hello&quot;            ; 48 65 6c 6c 6f 00
+.string &quot;test&quot;            ; 74 65 73 74 00
+
+; Diretivas de Arquivos/Inclus&#xE3;o
+.include &quot;other.s&quot;        ; Inclui c&#xF3;digo de other.s
+.incbin &quot;file.bin&quot;        ; Insere bytes brutos de file.bin
+.file &quot;mysource.s&quot;        ; Informa nome do arquivo fonte
+
+; Diretivas de Se&#xE7;&#xF5;es/Organiza&#xE7;&#xE3;o
+.section .text            ; Se&#xE7;&#xE3;o de c&#xF3;digo
+.section .data            ; Se&#xE7;&#xE3;o de dados
+.section .rodata          ; Se&#xE7;&#xE3;o de dados somente leitura
+.text                    ; Mudar para .text
+.data                    ; Mudar para .data  
+.bss                     ; Mudar para .bss (dados n&#xE3;o inicializados)
+.global _start           ; _start vis&#xED;vel externamente
+.globl main              ; main vis&#xED;vel externamente
+
+; Diretivas de Alinhamento/Tamanho
+.align 4                 ; Alinha para m&#xFA;ltiplo de 4
+.align 8                 ; Alinha para m&#xFA;ltiplo de 8
+.skip 100                ; 100 bytes de 0x00
+.space 50, 0x41          ; 50 bytes de &apos;A&apos;
+.zero 64                 ; 64 bytes de 0x00
+
+; Diretivas de Repeti&#xE7;&#xE3;o
+.rept 10
+.byte 0x90               ; 10 bytes de NOP
+.endr
+.fill 100, 1, 0x41       ; 100 bytes de &apos;A&apos;
+.fill 50, 4, 0x90909090  ; 50 grupos de 4 bytes NOP
+
+; Diretivas de labels/S&#xED;mbolos
+.set BUFFER_SIZE, 100
+.equ SYS_EXIT, 60
+.macro exit code=0
+    mov rax, 60
+    mov rdi, \code
+    syscall
+.endm
+
+; Condicionais
+.if 1 == 1
+.byte 0x41
+.else  
+.byte 0x42
+.endif
+
+; Definir endere&#xE7;o atual
+.org 0x400000            ; Define endere&#xE7;o atual
+
+; Declarar vari&#xE1;vel comum
+.comm buffer, 100        ; Vari&#xE1;vel global n&#xE3;o inicializada
+</code></pre>
+<p>Um exemplo de uso:</p>
+<pre><code>.text
+.global _start
+.file &quot;exploit.s&quot;
+
+_start:
+    .align 8 ; Adiciona padding
+    mov rax, 1 ; n&#xFA;mero 1 no registrador rax
+    .byte 0x48, 0x31, 0xc0 ; Insere bytes
+    .ascii &quot;TEST&quot; ; Insere string (&quot;TEXT&quot; = 0x54 0x45 0x53 0x54)
+</code></pre><p>O execut&#xE1;vel final ficaria:</p>
+<pre><code>00000000: 48b8 0100 0000 0000 0000 4831 c054 4553  H.........H1.TES
+00000010: 54                                        T
+</code></pre><p>Perceba que:</p>
+<ul>
+<li><code>48b8 0100</code> - mov rax, 1</li>
+<li><code>4831 c0</code> - Bytes inseridos</li>
+<li><code>54 4553 54</code> - String &quot;TEXT&quot;</li>
+</ul>
+<p><code>.file</code>, <code>.text</code> e <code>.global</code> sumiram.</p>
+<h2 id="28-assembly-cheatsheet">2.8 Assembly CheatSheet</h2>
+<ul>
+<li><strong>Registradores</strong> - Mem&#xF3;ria no processador que armazena informa&#xE7;&#xE3;o<ul>
+<li><code>rbp</code>: Base Pointer, aponta para a <strong>base do stack</strong> frame atual</li>
+<li><code>rsp</code>: Stack Pointer, aponta para o <strong>topo da stack</strong> frame atual</li>
+<li><code>rip</code>: Instruction Pointer, aponta para a <strong>instru&#xE7;&#xE3;o a ser executada</strong></li>
+<li>Prefixos: <code>r</code> - 8 bytes. <code>e</code> - 4 bytes. <code>nada</code> - 2 bytes. Sufixo <code>l</code> - Lower byte</li>
+</ul>
+</li>
+<li>Words<ul>
+<li><code>word</code> - 2 bytes</li>
+<li><code>dword</code> - 4 bytes</li>
+<li><code>qword</code> - 8 bytes</li>
+</ul>
+</li>
+<li><strong>Stack</strong> - Regi&#xE3;o de mem&#xF3;ria com opera&#xE7;&#xF5;es push/pop, onde vari&#xE1;veis locais s&#xE3;o armazenadas. Cresce negativamente (topo &#xE9; endere&#xE7;o menor, base &#xE9; endere&#xE7;o maior).</li>
+<li><strong>Instru&#xE7;&#xF5;es</strong><ul>
+<li><code>mov</code> - <strong>Move dados de um registrador para outro</strong> (segundo para o primeiro).</li>
+<li><code>dereference</code> - <strong>colchetes [ ] referenciam dados ao qual um ponteiro aponta</strong>.</li>
+<li><code>lea</code> - <strong>Calcula o endere&#xE7;o do segundo operando</strong>, e move para o primeiro.</li>
+<li><code>add</code> - <strong>Adiciona dois valores</strong> e armazena no primeiro operando.</li>
+<li><code>sub</code> - <strong>Subtrai o segundo operando do primeiro</strong> e armazena no primeiro.</li>
+<li><code>xor</code> - <strong>Faz o xor nos dois argumentos</strong>, e armazena no primeiro operando. and e or s&#xE3;o semelhantes.</li>
+<li><code>push</code> - <strong>Cresce a stack em 8 ou 4 bytes</strong> (para x64, ou 4 para x86), <strong>depois</strong> <strong>adiciona o conte&#xFA;do do registrador para o topo da stack.</strong></li>
+<li><code>pop</code> - Tira 8 bytes do topo da stack e armazena no argumento. Depois encolhe a stack.</li>
+<li><code>jmp</code> - <strong>Pula para um endere&#xE7;o de instru&#xE7;&#xE3;o</strong>. Redireciona a execu&#xE7;&#xE3;o do c&#xF3;digo.</li>
+<li><code>call</code> - Redu&#xE7;&#xE3;o dos comandos <code>push RIP</code> e <code>jmp function</code>. Utilizado sempre que se chama uma fun&#xE7;&#xE3;o.</li>
+<li><code>ret</code> - Redu&#xE7;&#xE3;o do comando <code>pop RIP</code> (desempilha topo da stack para voltar para a execu&#xE7;&#xE3;o de c&#xF3;digo antes da chamada de fun&#xE7;&#xE3;o, e atribui o valor do pop ao RIP).</li>
+<li><code>cmp</code> - <strong>Compara dois operandos, faz o primeiro menos o segundo e checa se o resultado &#xE9; maior/menor/igual a zero</strong>. Dependendo do valor, <strong>define uma flag</strong> de acordo.</li>
+<li><code>jnz/jz</code> -  (jump if not zero/jump if zero) Similar ao jmp. Mas apenas <strong>executa dependendo do status da zero flag</strong>. Existem outros jumps.</li>
+</ul>
+</li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="1_beginning.html" class="navigation navigation-prev " aria-label="Previous page: Introdução ao Pwning">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="3_endianness.html" class="navigation navigation-next " aria-label="Next page: Endianness">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Assembly","level":"1.2.1","depth":2,"next":{"title":"Endianness","level":"1.2.2","depth":2,"path":"introduction/3_endianness.md","ref":"./introduction/3_endianness.md","articles":[]},"previous":{"title":"Introdução ao Pwning","level":"1.2","depth":1,"path":"introduction/1_beginning.md","ref":"./introduction/1_beginning.md","articles":[{"title":"Assembly","level":"1.2.1","depth":2,"path":"introduction/2_assembly.md","ref":"./introduction/2_assembly.md","articles":[]},{"title":"Endianness","level":"1.2.2","depth":2,"path":"introduction/3_endianness.md","ref":"./introduction/3_endianness.md","articles":[]},{"title":"Ghidra","level":"1.2.3","depth":2,"path":"introduction/4_ghidra.md","ref":"./introduction/4_ghidra.md","articles":[]},{"title":"GDB","level":"1.2.4","depth":2,"path":"introduction/5_gdb.md","ref":"./introduction/5_gdb.md","articles":[]},{"title":"Pwntools","level":"1.2.5","depth":2,"path":"introduction/6_pwntools.md","ref":"./introduction/6_pwntools.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css","website":"styles/website.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css","website":"styles/website.css"}},"file":{"path":"introduction/2_assembly.md","mtime":"2025-12-18T20:26:10.080Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2025-12-18T21:25:46.643Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
