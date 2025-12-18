@@ -1,0 +1,15 @@
+{
+  "name": "my-gitbook",
+  "version": "1.0.0",
+  "description": "A GitBook project",
+  "main": "index.js",
+  "scripts": {
+    "build": "gitbook build",
+    "deploy": "gh-pages -d _book"
+  },
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "gh-pages": "^3.2.3"
+  }
+}
