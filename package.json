@@ -11,5 +11,8 @@
   "license": "MIT",
   "devDependencies": {
     "gh-pages": "^3.2.3"
+  },
+  "dependencies": {
+    "gitbook-cli": "^2.3.2"
   }
 }

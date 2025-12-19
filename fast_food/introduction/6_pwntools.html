@@ -1,0 +1,651 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Pwntools CheatSheet · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../../pwning/1_beginning.html" />
+    
+    
+    <link rel="prev" href="5_gdb.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Bem vindo
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../../introduction/1_beginning.html">
+            
+                <a href="../../introduction/1_beginning.html">
+            
+                    
+                    Introdução ao Pwning
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../../introduction/2_assembly.html">
+            
+                <a href="../../introduction/2_assembly.html">
+            
+                    
+                    Assembly
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../../introduction/3_endianness.html">
+            
+                <a href="../../introduction/3_endianness.html">
+            
+                    
+                    Endianness
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../../introduction/4_ghidra.html">
+            
+                <a href="../../introduction/4_ghidra.html">
+            
+                    
+                    Ghidra
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../../introduction/5_gdb.html">
+            
+                <a href="../../introduction/5_gdb.html">
+            
+                    
+                    GDB
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="../../introduction/6_pwntools.html">
+            
+                <a href="../../introduction/6_pwntools.html">
+            
+                    
+                    Pwntools
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../../pwning/1_beginning.html">
+            
+                <a href="../../pwning/1_beginning.html">
+            
+                    
+                    Pwning
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../../pwning/2_0_bof.html">
+            
+                <a href="../../pwning/2_0_bof.html">
+            
+                    
+                    Buffer Overflow
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1.1" data-path="../../pwning/2_1_bof_variables.html">
+            
+                <a href="../../pwning/2_1_bof_variables.html">
+            
+                    
+                    Buffer Overflow - Variáveis
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.2" data-path="../../pwning/2_2_bof_callfunction.html">
+            
+                <a href="../../pwning/2_2_bof_callfunction.html">
+            
+                    
+                    Buffer Overflow - CallFunction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.3" data-path="../../pwning/2_3_bof_shellcode.html">
+            
+                <a href="../../pwning/2_3_bof_shellcode.html">
+            
+                    
+                    Buffer Overflow - ShellCode
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.4" data-path="../../pwning/3_format_strings.html">
+            
+                <a href="../../pwning/3_format_strings.html">
+            
+                    
+                    Format Strings
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../beginning.html">
+            
+                <a href="../beginning.html">
+            
+                    
+                    Fast Food
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="1_beggining.html">
+            
+                <a href="1_beggining.html">
+            
+                    
+                    Fast Intro
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.1" data-path="2_assembly.html">
+            
+                <a href="2_assembly.html">
+            
+                    
+                    Assembly CheatSheet
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2" data-path="3_endianness.html">
+            
+                <a href="3_endianness.html">
+            
+                    
+                    Endianness
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.3" data-path="4_ghidra.html">
+            
+                <a href="4_ghidra.html">
+            
+                    
+                    Ghidra
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.4" data-path="5_gdb.html">
+            
+                <a href="5_gdb.html">
+            
+                    
+                    GDB CheatSheet
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4.1.5" data-path="6_pwntools.html">
+            
+                <a href="6_pwntools.html">
+            
+                    
+                    Pwntools CheatSheet
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../../pwning/1_beginning.html">
+            
+                <a href="../../pwning/1_beginning.html">
+            
+                    
+                    Fast Pwning
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.2.1" data-path="../pwning/2_protections.html">
+            
+                <a href="../pwning/2_protections.html">
+            
+                    
+                    Proteções de binários
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.2" data-path="../pwning/3_bof.html">
+            
+                <a href="../pwning/3_bof.html">
+            
+                    
+                    Buffer Overflow Simples
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.3" data-path="../pwning/4_bof_callfunction.html">
+            
+                <a href="../pwning/4_bof_callfunction.html">
+            
+                    
+                    Buffer Overflow - Variáveis
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.4" data-path="../pwning/5_bof_shellcode.html">
+            
+                <a href="../pwning/5_bof_shellcode.html">
+            
+                    
+                    Buffer Overflow - ShellCode
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.5" data-path="../pwning/6_format_strings.html">
+            
+                <a href="../pwning/6_format_strings.html">
+            
+                    
+                    Format Strings
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >Pwntools CheatSheet</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="pwntools-cheatsheet">Pwntools CheatSheet</h1>
+<ul>
+<li>Instala&#xE7;&#xE3;o: <code>sudo pip install pwn</code></li>
+</ul>
+<p>Fluxo de uso:</p>
+<ol>
+<li>Estabelecer target (<code>remote</code> para servidores e <code>process</code> para execut&#xE1;veis locais)</li>
+<li>Enviar comandos iniciais ao programa com <code>gdb.attach()</code> (j&#xE1; estabelecemos os breakpoints e quaisquer outros comandos em <code>gdbscript</code>)</li>
+<li>Gerar dados, empacotar com <code>p64()</code> ou <code>p32()</code> e enviar com <code>target.send()</code> ou <code>target.sendline()</code></li>
+<li>Acesso manual com <code>target.interactive()</code></li>
+</ol>
+<pre><code class="lang-py"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *
+<span class="hljs-comment"># Conecta a um servidor:porta ao inv&#xE9;s de faz&#xEA;-lo no terminal</span>
+target = remote(<span class="hljs-string">&quot;github.com&quot;</span>, <span class="hljs-number">9000</span>);
+<span class="hljs-comment"># Roda um bin&#xE1;rio (programa!)</span>
+target = process(<span class="hljs-string">&quot;./challenge&quot;</span>)
+<span class="hljs-comment"># Adicionar o gdb debugger ao processo, dando um comando (b main e b my_function)</span>
+gdb.attach(target, gdbscript=<span class="hljs-string">&apos;&apos;&apos;
+b main
+b my_function&apos;)
+&apos;&apos;&apos;</span>
+<span class="hljs-comment"># Enviar vari&#xE1;vel x ao target como input</span>
+target.send(x)
+<span class="hljs-comment"># Enviar vari&#xE1;vel seguida de um \n</span>
+target.sendline(x)
+<span class="hljs-comment"># Printar linha &#xFA;nica de texto do target</span>
+<span class="hljs-keyword">print</span> target.recvline()
+<span class="hljs-comment"># Printar tudo do target at&#xE9; a string desejada</span>
+<span class="hljs-keyword">print</span> target.recvuntil(<span class="hljs-string">&quot;out&quot;</span>)
+<span class="hljs-string">&apos;&apos;&apos;
+- Arquivos ELFs (assembly) armazenam dados atrav&#xE9;s de least endian
+- Isso que significa que os dados s&#xE3;o armazenados com o byte menos significativo primeiro. (contra&#x155;io)
+- (inteiro -&gt; 0x109F D7B4 9C2D 0135 // Armazenado na mem&#xF3;ria -&gt; 35 01 2D 9C B4 D7 9F 10)
+- Em algumas situa&#xE7;&#xF5;es em que escaneamos um inteiro, precisamos levar isso em conta.
+- Precisamos empacotar o inteiro (human readable -&gt; bin&#xE1;rio)
+&apos;&apos;&apos;</span>
+<span class="hljs-comment"># Para empacotar n&#xFA;mero inteiro como least endian (sequ&#xEA;ncia de bytes)</span>
+p64(x) <span class="hljs-comment"># QWORD (x64 = 64 bits  = 8 bytes)</span>
+p32(x) <span class="hljs-comment"># DWORD (x86 = 32 bits = 4 bytes)</span>
+<span class="hljs-comment"># Para desempacotar least endian (sequ&#xEA;ncia de bytes) como inteiro</span>
+u64(x) <span class="hljs-comment"># QWORD</span>
+u32(x) <span class="hljs-comment"># DWORD</span>
+
+<span class="hljs-comment"># Interage manualmente com o target no terminal</span>
+target.interactive()
+</code></pre>
+<p>Exemplo de endianness com pwntools:</p>
+<pre><code class="lang-py"><span class="hljs-comment"># Big endian</span>
+p64(<span class="hljs-number">0x41424344</span>, endian=<span class="hljs-string">&apos;big&apos;</span>)  <span class="hljs-comment"># b&apos;\x00\x00\x00\x00ABCD&apos;</span>
+u64(<span class="hljs-string">b&apos;ABCD\x00\x00\x00\x00&apos;</span>, endian=<span class="hljs-string">&apos;big&apos;</span>)  <span class="hljs-comment"># 0x41424344</span>
+
+<span class="hljs-comment"># Little endian (padr&#xE3;o)</span>
+p64(<span class="hljs-number">0x41424344</span>)  <span class="hljs-comment"># b&apos;DCBA\x00\x00\x00\x00&apos;</span>
+</code></pre>
+<p>Temos que trabalhar com <code>b&apos;&apos;</code>, um byteArray do python, e n&#xE3;o strings padr&#xE3;o <code>&apos;&apos;</code>. Isso cria uma sequ&#xEA;ncia de bytes no Python, essencial para trabalhar com bin&#xE1;rios, pois bin&#xE1;rios trabalham com bytes e n&#xE3;o strings. Comandos como <code>p64</code> retornam byteArrays.</p>
+<pre><code class="lang-py"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *
+
+<span class="hljs-comment"># Payload em bytes</span>
+payload = <span class="hljs-string">b&apos;A&apos;</span> * <span class="hljs-number">64</span> + p64(<span class="hljs-number">0x401234</span>)
+conn.send(payload)
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="5_gdb.html" class="navigation navigation-prev " aria-label="Previous page: GDB CheatSheet">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../../pwning/1_beginning.html" class="navigation navigation-next " aria-label="Next page: Fast Pwning">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Pwntools CheatSheet","level":"1.4.1.5","depth":3,"next":{"title":"Fast Pwning","level":"1.4.2","depth":2,"path":"pwning/1_beginning.md","ref":"./pwning/1_beginning.md","articles":[{"title":"Proteções de binários","level":"1.4.2.1","depth":3,"path":"fast_food/pwning/2_protections.md","ref":"./fast_food/pwning/2_protections.md","articles":[]},{"title":"Buffer Overflow Simples","level":"1.4.2.2","depth":3,"path":"fast_food/pwning/3_bof.md","ref":"./fast_food/pwning/3_bof.md","articles":[]},{"title":"Buffer Overflow - Variáveis","level":"1.4.2.3","depth":3,"path":"fast_food/pwning/4_bof_callfunction.md","ref":"./fast_food/pwning/4_bof_callfunction.md","articles":[]},{"title":"Buffer Overflow - ShellCode","level":"1.4.2.4","depth":3,"path":"fast_food/pwning/5_bof_shellcode.md","ref":"./fast_food/pwning/5_bof_shellcode.md","articles":[]},{"title":"Format Strings","level":"1.4.2.5","depth":3,"path":"fast_food/pwning/6_format_strings.md","ref":"./fast_food/pwning/6_format_strings.md","articles":[]}]},"previous":{"title":"GDB CheatSheet","level":"1.4.1.4","depth":3,"path":"fast_food/introduction/5_gdb.md","ref":"./fast_food/introduction/5_gdb.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css","website":"styles/website.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css","website":"styles/website.css"}},"file":{"path":"fast_food/introduction/6_pwntools.md","mtime":"2025-12-18T21:10:12.372Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2025-12-19T13:17:28.477Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
