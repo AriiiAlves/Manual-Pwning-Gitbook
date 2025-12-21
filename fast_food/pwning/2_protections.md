@@ -1,6 +1,6 @@
-# 2. Proteções de binários
+# Proteções de binários
 
-## 2.1 RELRO (Relocation Read-Only)
+## RELRO (Relocation Read-Only)
 
 **Funcionamento**
 
@@ -18,7 +18,7 @@ Impede ataques que visam modificar ponteiros em áreas de realocação, como GOT
 - **Partial RELRO**: Permite Lazy Binding, o GOT é gravável (rw) porque é atualizado em tempo de execução quando uma função externa é chamada pela primeira vez. Modifique o GOT antes que a função a ser explorada seja chamada pela segunda vez.
 - **Full RELRO**: Extremamente difícil ou impossível modificar o GOT diretamente. O ataque deve focar em técnicas que não envolvam a escrita no GOT.
 
-## 2.2 Stack Canary/SSP (Stack-Smashing Protector)
+## Stack Canary/SSP (Stack-Smashing Protector)
 
 **Funcionamento**
 
@@ -35,7 +35,7 @@ Impede sobrescrita do `return address` na stack.
 
 Vazar o **Canary** (endereço de verificação do Stack Canary), mantendo o valor que ele usa como verificação na stack. Ou sobrescrever ponteiros de função na Heap (Heap Overflow) ou em áreas não protegidas pelo Canary.
 
-## 2.3 NX/DEP
+## NX/DEP
 
 **Funcionamento**
 
@@ -47,7 +47,7 @@ Impede com que áreas da memória que deveriam conter apenas dados sejam executa
 
 **Contorno**: Usar ROP (Return-Oriented Programming) ou JOP (Jump-Oriented Programming), que reutilizam código do próprio programa, estes estando em áreas com permissão de execução. 
 
-## 2.4 PIE (Position-Independent Executable) + ASLR (Address Space Layout Randomization)
+## PIE (Position-Independent Executable) + ASLR (Address Space Layout Randomization)
 
 **Funcionamento**
 
@@ -61,7 +61,7 @@ Endereços do executável randomizados toda vez que ele roda. Mesmo que você te
 
 Vazar endereços.
 
-## 2.5 Fortify Source
+## Fortify Source
 
 Recurso do compilador (GCC/Clang) que substitui chamadas a funções C inseguras (strcpy, memcpy, snprintf) por versões mais seguras em tempo de compilação. Essas versões verificam se o tamanho de destino fornecido pelo programador é excedido e, se houver um estouro, encerram o programa.
 

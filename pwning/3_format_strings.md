@@ -1,6 +1,6 @@
-## 3 Format Strings
+## Format Strings
 
-Em C, a função printf recebe Format Specifiers e coloca variáveis nos lugares deles para imprimir ao usuário.
+Em C, as funções `printf`, `fprintf` ou qualquer outras parecidas recebem Format Specifiers e colocam variáveis nos lugares deles para imprimir ao usuário.
 
 ```C
 int value = 1205;
@@ -22,9 +22,9 @@ printf("%x %x %x", value);
 
 O `printf` espera a mesma quantidade de parâmetros que Format Specifiers, e apenas puxa esses parâmetros da stack. Se não há parâmetros suficientes na stack, **a função vai pegar os próximos valores, vazando endereços da stack**.
 
-## 3.1 aplicando Format Strings
+## Aplicando Format Strings
 
-Temos o seguinte programa:
+Temos o seguinte programa em x86:
 
 ```C
 #include <stdio.h>
@@ -56,35 +56,34 @@ Output: `f7f74080 0 5657b1c0 782573fc 20782520`
 
 Veja que o que foi vazado foi o **primeiro endereço a partir de esp em diante**: `esp+0x4`, `esp+0x8`,...
 
-Regra do printf:
+Fluxo do printf:
 
-- printf espera parâmetros após o formato na pilha
-- O primeiro parâmetro (string de formato) está no topo da pilha no momento da chamada
-- Os parâmetros seguintes (que deveriam ser os valores para %x) estariam imediatamente após
+1. printf espera parâmetros após o formato na Stack
+2. O primeiro parâmetro (**format string**) está no **topo da pilha** no momento da chamada
+3. Os parâmetros seguintes (que deveriam ser os valores para %x) **estariam imediatamente após**
 
-Para chamar `printf(buffer)`, o compilador precisa:
+Para chamar `printf(buffer)`, o **compilador** precisa:
 
 1. Empurrar os parâmetros na pilha
 2. Chamar a função
 
-Para `printf("%d %d", a, b)`:
+Exemplo de preparo de chamada de `printf("%d %d", a, b)`:
 
 ```
 ; Supondo que buffer esteja em [ebp-30]
 push b  (34)        ← terceiro parâmetro
 push a  (99)        ← segundo parâmetro  
-lea eax, [ebp-30]    ; eax = endereço do buffer (que contém "%x %x %x %x %x")
+lea eax, [ebp-30]    ; eax recebe endereço do buffer (que contém "%x %x %x %x %x")
 push eax         ← primeiro parâmetro
-call printf          ; push endereço de retorno, jump para printf
+call printf          ; push return address (stack), jump printf (rip)
 ```
 
-Após push eax, temos apenas:
+Após `push a, push b, push eax`, teremos a stack desse jeito:
 
 ```
 (endereços altos)
 +------------------+
-| ...              |
-| end. retorno main|
+| ret. add printf  |
 +------------------+
 | ebp salvo        | ← EBP
 +------------------+
@@ -92,9 +91,9 @@ Após push eax, temos apenas:
 | ...              |  | buffer (variável local)
 | buffer[0]="%x"   | /
 +------------------+ 
-| a                | ← ESP+12 (onde 2º %d vai buscar)
+| b                | ← ESP+12 (onde 2º %d vai buscar)
 +------------------+ 
-| b                | ← ESP+8 (onde 1º %d vai buscar)
+| a                | ← ESP+8 (onde 1º %d vai buscar)
 +------------------+
 | 1 Parâmetro      | ← ESP+4
 +------------------+
@@ -103,37 +102,142 @@ Após push eax, temos apenas:
 (endereços baixos)
 ```
 
-Após dar push eax e call printf, teremos, de maneira geral:
+Após dar `call printf`, agora estamos no Stack Frame da função `printf`:
 
 ```
 (endereços altos)
-+------------------+ 
-| ...              | ↑
-+------------------+ 
-| end. retorno main| 
-+------------------+ 
-| ebp salvo        | ← EBP da main (antes do printf)
-+------------------+ 
-| buffer[29]       | \
-| ...              |  | buffer ← região local da main
-| buffer[0]="%x"   | /
-+------------------+
-| ???              | ← EBP+20 (onde 3º %x vai buscar)
-+------------------+
-| ???              | ← EBP+16 (onde 2º %x vai buscar)
-+------------------+
-| ???              | ← EBP+12 (onde 1º %x vai buscar)
-+------------------+ 
-| ponteiro p/ buffer| ← EBP+8 do printf (1º parâmetro)
-+------------------+ 
-| end. retorno      | ← EBP+4 do printf (salvo pelo call)
-+------------------+ 
++-------------------+ 
+| ...               | ↑
++-------------------+ 
+| end. retorno main | 
++-------------------+ 
+| ebp salvo         | ← EBP da main (antes do printf)
++-------------------+ 
+| buffer[29]        | \
+| ...               |  | Format String ← região local da main (antes do printf)
+| buffer[0]="%x"    | /
++-------------------+
+| ???               | ← EBP+16 (onde 2º %d vai buscar)
++-------------------+
+| ???               | ← EBP+12 (onde 1º %d vai buscar)
++-------------------+ 
+| ponteiro p/ buffer| ← EBP+8 do printf (Format String, 1º Parâmetro do printf)
++-------------------+ 
+| ret. add printf   | ← EBP+4 do printf
++-------------------+ 
 | ebp salvo (printf)| ← EBP do printf
-+------------------+ 
++-------------------+ 
 | vars locais printf| 
-+------------------+ ← ESP dentro do printf
++-------------------+ ← ESP dentro do printf
 (endereços baixos)
 ```
 
-A vulnerabilidade de format string vaza TODA a região da pilha, não importa se a variável tem "relação" com o printf ou não. É muito poderoso e simples.
+A vulnerabilidade de format string **pode vazar TODA a região da pilha**, não importa se a variável tem "relação" com o printf ou não. Isso pois ela permite ver desde o ESP até o EBP da `main` (função que chamou `printf`).
 
+Se pensarmos como blocos, um `printf("%x")` imprime o conteúdo do primeiro bloco depois de **ESP**.
+
+## Diferença entre 32-bit e 64-bit
+
+### x86 (32-bit)
+- Argumentos são passados na **stack**
+- printf vai buscar o valor para `%x` do próximo endereço na stack
+- Isso seria aproximadamente ESP+4 (considerando o endereço de retorno na stack)
+
+Antes de chamar printf:
+```
+ESP   → endereço de retorno
+ESP+4 → possivelmente o primeiro argumento (se houvesse)
+ESP+8 → segundo argumento, etc.
+```
+
+Quando printf("%x") é chamado:
+- printf espera encontrar o valor para %x em ESP+4
+- Mas ESP+4 contém o endereço de retorno ou lixo
+
+### x64 (32-bit)
+
+- Os primeiros argumentos são passados em registradores
+- `printf` vai primeiro olhar nos registradores que armazenam parâmetros (`RDI`, `RSI`, `RDX`, `RCX`, `R8`, `R9`)
+- Só depois busca na stack
+
+Lembrando a ordem de passagem de argumentos para registradores:
+
+1. `RDI` (Endereço da Format String)
+2. `RSI`  (Parâmetro 1)
+3. `RDX` (Parâmetro 2)
+4. `RCX` (...)
+5. `R8`
+6. `R9`
+7. Stack (RSP+8, RSP+16, ...)
+
+Se usarmos `printf("%x")`, veremos o que há de conteúdo no registrador `RSI`, que pode ser lixo de memória ou valor usado anteriormente pela função que fez a `call`.
+
+Isso nem sempre é muito útil. Mas se usarmos `printf("%x %x %x %x %x %x %x")`, temos:
+
+```
+%x 1 → RSI (2º registrador)
+%x 2 → RDX (3º registrador)  
+%x 3 → RCX (4º registrador)
+%x 4 → R8  (5º registrador)
+%x 5 → R9  (6º registrador)
+%x 6 → Stack (RSP+8)  ← AQUI COMEÇA A STACK!
+%x 7 → Stack (RSP+16)
+```
+
+## Tipos de Format Strings
+
+- `%x` - Imprime conteúdo do bloco de memória em hexadecimal. `%p` faz a mesma coisa, mas coloca `0x` na frente.
+```c
+printf("%x");        // Vaza 4 bytes da stack
+printf("%08x");      // Vaza com padding (8 dígitos)
+```
+- `%s` - Imprime string até null byte. Ao receber um bloco da stack como parâmetro, tenta interpretar o conteúdo do bloco como ponteiro, indo até esse endereço e imprimindo o conteúdo como string.
+  - Se argumento for endereço válido - Lê até null byte
+  - Se for endereço inválido - Segmentation fault
+  - Se controlarmos o argumento, podemos ler a string de qualquer endereço (BOF - Variável)
+```c
+printf("%s", 0x404000);  // Lê string do endereço 0x404000
+printf("%s");            // Tenta ler endereço da stack como ponteiro
+```
+- `%n` - Escreve o número de bytes impressos até agora no endereço dado. Não imprime texto, mas escreve em um endereço de memória.
+  - `%n`- Escreve int (4 bytes)
+  - `%hn` - Escreve short (2 bytes)
+  - `%hhn` - Escreve char (1 byte)
+```C
+printf("%100x%n", 0, &var);  // Escreve 100 em &var 
+// (você pode usar isso para escrever o valor que quiser no bloco de memória)
+```
+
+## Exemplo de payload
+
+Exemplo 1:
+```
+# 1. Reconhecimento: Onde está nosso input? (encontrar os AAAA = 0x41414141)
+AAAA.%x.%x.%x.%x.%x.%x
+
+# 2. Leak de endereços (bypass ASLR)
+%p.%p.%p.%p.%p.%p.%p
+
+# 3. Arbitrary Read: ler de 0x404000
+# (primeiro colocar 0x404000 no buffer)
+\x00\x40\x40\x00.%s
+
+# 4. Arbitrary Write: sobrescrever GOT entry
+# Escrever 0xdeadbeef em 0x404020
+# Usando %hn para write parcial
+
+\x20\x40\x40\x00\x00\x00\x00\x00   # addr_low (0x404020)
+\x22\x40\x40\x00\x00\x00\x00\x00   # addr_high (0x404022)
+%.48863x                           # Padding para 0xbeef
+%7$hn                              # Write para addr_low
+%.8126x                            # Padding para 0xdead  
+%8$hn                              # Write para addr_high
+```
+
+- Descobrimos que nosso input/buffer é armazenado no 7º argumento que o `printf` dá
+- `%7$hn`: Acessa o 7º "argumento" (primeiro endereço: `0x404020`)
+  - Escreve o número de bytes impressos até agora (48879 = `0xbeef`)
+  - No endereço `0x404020`
+- `%8$hn`: Acessa o 8º "argumento" (segundo endereço: 0x404022)
+  - Escreve o total de bytes impressos (57005 = `0xdead`)
+  - No endereço `0x404022`

@@ -1,4 +1,4 @@
-# 4. Buffer Overflow - Call Function
+# Buffer Overflow - Call Function
 
 Sobrescrevemos o `return address` com um endereço de nossa escolha, de qualquer lugar do código.
 
@@ -9,11 +9,11 @@ Sobrescrevemos o `return address` com um endereço de nossa escolha, de qualquer
 
 Nota: Em alguns executáveis raros, o `return address` pode ser diferente de `rbp+0x8` (x64) ou `ebp+0x4` (x32). Sempre verifique.
 
-## 4.1 Evitando desalinhamento de Stack com PUSH RBP (fraco)
+## Evitando desalinhamento de Stack com PUSH RBP (fraco)
 
 - Se você quer ir a uma instrução no endereço `0x00000001`, substitua por `0x00000001 + 1`. A instrução PUSH RBP que desalinha a stack ocupa 1 byte de memória, e você irá pular ela.
 
-## 4.2 Evitando desalinhamento de Stack com ROP de ret
+## Evitando desalinhamento de Stack com ROP de ret
 
 - Ache o endereço de um `ret`.
   - Com ROPgadget: `ROPgadget`: `ROPgadget -- binary meu_programa | grep "ret"`

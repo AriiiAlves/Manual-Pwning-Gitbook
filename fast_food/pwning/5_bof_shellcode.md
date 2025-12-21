@@ -1,4 +1,4 @@
-# 5. Buffer Overflow - Shellcode
+# Buffer Overflow - Shellcode
 
 Shellcode é código assembly. É pequeno. A ideia é colocar na stack, colocar o endereço do início do Shellcode no `return address` e mandar a RIP pra lá.
 
@@ -26,7 +26,7 @@ p.sendline(payload)
 p.interactive()
 ```
 
-## 5.1 ShellCode + pwntools
+## ShellCode + pwntools
 
 ```py
 # Shellcodes prontos populares

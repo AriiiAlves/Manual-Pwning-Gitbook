@@ -1,6 +1,6 @@
-# 2. Assembly
+# Assembly
 
-## 2.1. O que é Assembly?
+## O que é Assembly?
 
 Assembly ou linguagem de montagem é uma **linguagem de programação**, assim como C, Python, JavaScript, etc. Porém se destaca por ser a linguagem mais próxima do código que o processador realmente executa. O C abstrai muitas das operações.
 
@@ -41,13 +41,13 @@ Não há linguagem de programação melhor do que outra, apenas aquela que é um
 
 O Assembly possui **acesso direto ao hardware**, de modo que permite manipular diretamente os registradores da CPU (falaremos mais à frente sobre isso). Cada instrução (linha) de um código Assembly geralmente corresponde a uma única instrução de máquina, assim temos uma proporção 1:1, algo que não acontece no C e Python.
 
-## 2.2 Por que Assembly?
+## Por que Assembly?
 
 Todo código, qualquer que seja a linguagem, é compilado e transformado em código de máquina. Engenharia reversa é a arte de abrir esses binários e entendê-los, e para isso precisamos entender a sintaxe do Assembly, pois ela torna o código de máquina legível. Ou seja, ela traduz 0 e 1 em instruções que podemos entender. O assembly não é tão trivial, mas uma vez que você se acostuma, te ajuda perfeitamente a entender quealquer binário.
 
 Além disso, as vulnerabilidades que são exploradas aqui e em CTF's geralmente necessitam que  exploremos o Assembly e a organização interna do código, para ver como podemos abusar dessa estrutura.
 
-## 2.3 Registradores
+## Registradores
 
 Registradores são **locais de memória temporária dentro do processador**. Eles possuem uma **quantidade pequena de memória**, em geral 8 bytes, mas possuem **alta velocidade de acesso e operação** (muito mais rápido que memḿoria RAM).
 
@@ -81,7 +81,7 @@ Abaixo, temos uma lista de registradores e do modo como cada um é usado em um p
 |   r14           |     r14d      |     r14w      |     r14b   |Local (Uso Geral, Preservado em Chamadas)
 |   r15           |     r15d      |     r15w      |     r15b   |Local (Uso Geral, Preservado em Chamadas)
 
-## 2.4 Flags
+## Flags
 
 **Existe um registrador que contém flags**, o **RFLAGS** (x64 = 64 bits) ou **EFLAGS** (x86 = 32 bits). Cada bit do registrador é uma flag diferente.
 
@@ -116,7 +116,7 @@ Esse registrador é usado, por exemplo, para a operação de comparar se dois n�
 
 Isso sempre irá ocorrer quando houver um `IF/ELSE`, por exemplo, no código original.
 
-## 2.5 Instruções Assembly comuns
+## Instruções Assembly comuns
 
 ### Words
 
@@ -228,9 +228,9 @@ Similar ao `jmp`. Mas apenas executa dependendo do status da zero flag.
 
 Existem outros, como `jle` (jump if less or equal).
 
-## 2.6 Stack em Arquitetura de programas (Pilha)
+## Stack em Arquitetura de programas (Pilha)
 
-### 2.6.1 Conceito de Stack
+### Conceito de Stack
 
 A stack é um conceito simples de Estrutura de Dados. Consiste apenas em uma ideia de como organizar informação. Imagine que você possui um tubo onde você pode colocar bolinhas, somente pelo topo. Se você enxer o tubo, para retirar bolinhas, você precisará começar a remover pelas bolinhas mais recentes que você colocou.
 
@@ -265,7 +265,7 @@ int main(){
 
 Dessa forma, o conceito de Stack é utilizado na arquitetura de programas para organizar o fluxo do programa e o escopo de funções.
 
-### 2.6.2 Stack para Assembly
+### Stack para Assembly
 
 A stack é uma **região contínua de memória no computador onde as variáveis locais serão armazenadas**. Ela é uma estrutura de dados com duas operações: **PUSH** (adicionar valor ao topo) e **POP** (retirar valor do topo).
 
@@ -399,7 +399,7 @@ Perceba que a Stack está de 4 em 4 bytes (arquitetura x86 = 32 bits). Também p
 - **[EBP-8]** = local2
 - **[EBP-12]** = local3
 
-## 2.7 Assembly na prática
+## Assembly na prática
 
 Começaremos com alguns problemas básicos de Engenharia Reversa de Assembly.
 
@@ -607,7 +607,7 @@ $    ./loop
 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19
 ```
 
-## 2.8 Tópico Adicional: Diretivas Assembly
+## Tópico Adicional: Diretivas Assembly
 
 Usamos assembly apenas para análise, mas ele pode ser trabalhado como se fosse uma linguagem de programação comum. Para compilar um código em assembly em código de máquina, temos o assembler.
 
@@ -716,30 +716,3 @@ Perceba que:
 - `54 4553 54` - String "TEXT"
 
 `.file`, `.text` e `.global` sumiram.
-
-## 2.8 Assembly CheatSheet
-
-- **Registradores** - Memória no processador que armazena informação
-    - `rbp`: Base Pointer, aponta para a **base do stack** frame atual
-    - `rsp`: Stack Pointer, aponta para o **topo da stack** frame atual
-    - `rip`: Instruction Pointer, aponta para a **instrução a ser executada**
-    - Prefixos: `r` - 8 bytes. `e` - 4 bytes. `nada` - 2 bytes. Sufixo `l` - Lower byte
-- Words
-    - `word` - 2 bytes
-    - `dword` - 4 bytes
-    - `qword` - 8 bytes
-- **Stack** - Região de memória com operações push/pop, onde variáveis locais são armazenadas. Cresce negativamente (topo é endereço menor, base é endereço maior).
-- **Instruções**
-    - `mov` - **Move dados de um registrador para outro** (segundo para o primeiro).
-    - `dereference` - **colchetes [ ] referenciam dados ao qual um ponteiro aponta**.
-    - `lea` - **Calcula o endereço do segundo operando**, e move para o primeiro.
-    - `add` - **Adiciona dois valores** e armazena no primeiro operando.
-    - `sub` - **Subtrai o segundo operando do primeiro** e armazena no primeiro.
-    - `xor` - **Faz o xor nos dois argumentos**, e armazena no primeiro operando. and e or são semelhantes.
-    - `push` - **Cresce a stack em 8 ou 4 bytes** (para x64, ou 4 para x86), **depois** **adiciona o conteúdo do registrador para o topo da stack.**
-    - `pop` - Tira 8 bytes do topo da stack e armazena no argumento. Depois encolhe a stack.
-    - `jmp` - **Pula para um endereço de instrução**. Redireciona a execução do código.
-    - `call` - Redução dos comandos `push RIP` e `jmp function`. Utilizado sempre que se chama uma função.
-    - `ret` - Redução do comando `pop RIP` (desempilha topo da stack para voltar para a execução de código antes da chamada de função, e atribui o valor do pop ao RIP).
-    - `cmp` - **Compara dois operandos, faz o primeiro menos o segundo e checa se o resultado é maior/menor/igual a zero**. Dependendo do valor, **define uma flag** de acordo.
-    - `jnz/jz` -  (jump if not zero/jump if zero) Similar ao jmp. Mas apenas **executa dependendo do status da zero flag**. Existem outros jumps.

@@ -1,8 +1,8 @@
-# 6. Format Strings
+# Format Strings
 
 Exploração de printf ou sprintf que aceitam a entrada do usuário diretamente como string de formato (`%s`, `%x`, `%n`). Permite vazar endereço ou escrever GOT/variáveis.
 
-## 6.1 printf
+## printf
 
 Permite vazar TODA a pilha, pois imprime em sequência tudo que estiver após ESP/RSP antes de chamar `printf`.
 

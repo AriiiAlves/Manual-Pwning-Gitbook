@@ -1,4 +1,4 @@
-# 3. Simple Buffer Overflow
+# Simple Buffer Overflow
 
 Sobrescrevemos a Stack. Podemos sobrescrever variáveis ou o `return address`.
 
