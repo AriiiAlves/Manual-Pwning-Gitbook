@@ -266,6 +266,45 @@
             
         </li>
     
+        <li class="chapter " data-level="1.3.1.5" data-path="../pwning/4_array_indexing.html">
+            
+                <a href="../pwning/4_array_indexing.html">
+            
+                    
+                    Array Indexing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.6" data-path="../pwning/5_integer_overflow.html">
+            
+                <a href="../pwning/5_integer_overflow.html">
+            
+                    
+                    Integer Overflow
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.7" data-path="../pwning/6_bad_seed.html">
+            
+                <a href="../pwning/6_bad_seed.html">
+            
+                    
+                    Bad seed
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -406,7 +445,7 @@
                 <a href="../fast_food/pwning/3_bof.html">
             
                     
-                    Buffer Overflow Simples
+                    Buffer Overflow - Variáveis
             
                 </a>
             
@@ -419,7 +458,7 @@
                 <a href="../fast_food/pwning/4_bof_callfunction.html">
             
                     
-                    Buffer Overflow - Variáveis
+                    Buffer Overflow - CallFunction
             
                 </a>
             
@@ -508,8 +547,8 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="2-assembly">2. Assembly</h1>
-<h2 id="21-o-que-&#xE9;-assembly">2.1. O que &#xE9; Assembly?</h2>
+                                <h1 id="assembly">Assembly</h1>
+<h2 id="o-que-&#xE9;-assembly">O que &#xE9; Assembly?</h2>
 <p>Assembly ou linguagem de montagem &#xE9; uma <strong>linguagem de programa&#xE7;&#xE3;o</strong>, assim como C, Python, JavaScript, etc. Por&#xE9;m se destaca por ser a linguagem mais pr&#xF3;xima do c&#xF3;digo que o processador realmente executa. O C abstrai muitas das opera&#xE7;&#xF5;es.</p>
 <p>Tome como exemplo a opera&#xE7;&#xE3;o de declarar uma vari&#xE1;vel no C: <code>int a = 10</code>. Voc&#xEA; acha mesmo que o processador apenas recebe isso e j&#xE1; tem um lugar pronto para a vari&#xE1;vel <code>a</code>, uma caixinha onde &#xE9; guardado 10? N&#xE3;o, muito longe disso. Uma s&#xE9;rie de opera&#xE7;&#xF5;es que o processador realmente executa s&#xE3;o escondidas de voc&#xEA;, para simplificar o trabalho do programador.</p>
 <p>Algumas linguagens de programa&#xE7;&#xE3;o abstraem mais do que outras. O Assembly &#xE9; <strong>muito pr&#xF3;ximo do c&#xF3;digo de m&#xE1;quina, muito verboso</strong>. O C j&#xE1; abstrai mais, mas &#xE9; r&#xED;gido e permite manipula&#xE7;&#xE3;o de mem&#xF3;ria. J&#xE1; o Python seria o &quot;n&#xED;vel mais f&#xE1;cil&quot; das linguagens de programa&#xE7;&#xE3;o, pois tem in&#xFA;meras funcionalidades prontas que facilitam seu trabalho.</p>
@@ -537,10 +576,10 @@ add rdi, rsi
 </code></pre>
 <p>N&#xE3;o h&#xE1; linguagem de programa&#xE7;&#xE3;o melhor do que outra, apenas aquela que &#xE9; uma ferramenta boa para voc&#xEA;. Python oferece agilidade, enquanto C oferece otimiza&#xE7;&#xE3;o e robustez, ao passo que Assembly &#xE9; pr&#xF3;xima do c&#xF3;digo de m&#xE1;quina, &#xFA;til para otimiza&#xE7;&#xE3;o e tamb&#xE9;m an&#xE1;lise de Engenharia Reversa, como veremos aqui.</p>
 <p>O Assembly possui <strong>acesso direto ao hardware</strong>, de modo que permite manipular diretamente os registradores da CPU (falaremos mais &#xE0; frente sobre isso). Cada instru&#xE7;&#xE3;o (linha) de um c&#xF3;digo Assembly geralmente corresponde a uma &#xFA;nica instru&#xE7;&#xE3;o de m&#xE1;quina, assim temos uma propor&#xE7;&#xE3;o 1:1, algo que n&#xE3;o acontece no C e Python.</p>
-<h2 id="22-por-que-assembly">2.2 Por que Assembly?</h2>
+<h2 id="por-que-assembly">Por que Assembly?</h2>
 <p>Todo c&#xF3;digo, qualquer que seja a linguagem, &#xE9; compilado e transformado em c&#xF3;digo de m&#xE1;quina. Engenharia reversa &#xE9; a arte de abrir esses bin&#xE1;rios e entend&#xEA;-los, e para isso precisamos entender a sintaxe do Assembly, pois ela torna o c&#xF3;digo de m&#xE1;quina leg&#xED;vel. Ou seja, ela traduz 0 e 1 em instru&#xE7;&#xF5;es que podemos entender. O assembly n&#xE3;o &#xE9; t&#xE3;o trivial, mas uma vez que voc&#xEA; se acostuma, te ajuda perfeitamente a entender quealquer bin&#xE1;rio.</p>
 <p>Al&#xE9;m disso, as vulnerabilidades que s&#xE3;o exploradas aqui e em CTF&apos;s geralmente necessitam que  exploremos o Assembly e a organiza&#xE7;&#xE3;o interna do c&#xF3;digo, para ver como podemos abusar dessa estrutura.</p>
-<h2 id="23-registradores">2.3 Registradores</h2>
+<h2 id="registradores">Registradores</h2>
 <p>Registradores s&#xE3;o <strong>locais de mem&#xF3;ria tempor&#xE1;ria dentro do processador</strong>. Eles possuem uma <strong>quantidade pequena de mem&#xF3;ria</strong>, em geral 8 bytes, mas possuem <strong>alta velocidade de acesso e opera&#xE7;&#xE3;o</strong> (muito mais r&#xE1;pido que mem&#x1E3F;oria RAM).</p>
 <p>Basicamente, os registradores s&#xE3;o utilizados para armazenar informa&#xE7;&#xE3;o &#xFA;til, como valores de vari&#xE1;veis, endere&#xE7;os de mem&#xF3;ria para outros lugares (ponteiros), etc. Os registradores sempre estar&#xE3;o presentes em c&#xF3;digo assembly, pois enviar valores diretamente para registradores no processador &#xE9; o modo mais otimizado de se realizar uma opera&#xE7;&#xE3;o.</p>
 <div styles="display: block; text-align:center">
@@ -681,7 +720,7 @@ add rdi, rsi
 </tr>
 </tbody>
 </table>
-<h2 id="24-flags">2.4 Flags</h2>
+<h2 id="flags">Flags</h2>
 <p><strong>Existe um registrador que cont&#xE9;m flags</strong>, o <strong>RFLAGS</strong> (x64 = 64 bits) ou <strong>EFLAGS</strong> (x86 = 32 bits). Cada bit do registrador &#xE9; uma flag diferente.</p>
 <table>
 <thead>
@@ -772,7 +811,7 @@ add rdi, rsi
 <li>Resultado da subtra&#xE7;&#xE3;o &#xE9; descartado, mas as Flags s&#xE3;o utilizadas como refer&#xEA;ncia para os pr&#xF3;ximos passos.</li>
 </ul>
 <p>Isso sempre ir&#xE1; ocorrer quando houver um <code>IF/ELSE</code>, por exemplo, no c&#xF3;digo original.</p>
-<h2 id="25-instru&#xE7;&#xF5;es-assembly-comuns">2.5 Instru&#xE7;&#xF5;es Assembly comuns</h2>
+<h2 id="instru&#xE7;&#xF5;es-assembly-comuns">Instru&#xE7;&#xF5;es Assembly comuns</h2>
 <h3 id="words">Words</h3>
 <p>Words n&#xE3;o s&#xE3;o comandos, mas indicam o tamanho do tipo de dado em Assembly.</p>
 <ul>
@@ -835,8 +874,8 @@ ret
 <h3 id="jnzjz-jumpt-if-not-zerojump-if-zero">jnz/jz (jumpt if not zero/jump if zero)</h3>
 <p>Similar ao <code>jmp</code>. Mas apenas executa dependendo do status da zero flag.</p>
 <p>Existem outros, como <code>jle</code> (jump if less or equal).</p>
-<h2 id="26-stack-em-arquitetura-de-programas-pilha">2.6 Stack em Arquitetura de programas (Pilha)</h2>
-<h3 id="261-conceito-de-stack">2.6.1 Conceito de Stack</h3>
+<h2 id="stack-em-arquitetura-de-programas-pilha">Stack em Arquitetura de programas (Pilha)</h2>
+<h3 id="conceito-de-stack">Conceito de Stack</h3>
 <p>A stack &#xE9; um conceito simples de Estrutura de Dados. Consiste apenas em uma ideia de como organizar informa&#xE7;&#xE3;o. Imagine que voc&#xEA; possui um tubo onde voc&#xEA; pode colocar bolinhas, somente pelo topo. Se voc&#xEA; enxer o tubo, para retirar bolinhas, voc&#xEA; precisar&#xE1; come&#xE7;ar a remover pelas bolinhas mais recentes que voc&#xEA; colocou.</p>
 <p>A Stack &#xE9; basicamente isso. Come&#xE7;amos a resolver, ou <strong>desempilhar</strong> as coisas come&#xE7;ando das mais recentes para as mais antigas. Na Stack, <strong>o &#xFA;ltimo ser&#xE1; o primeiro</strong>.</p>
 <p>A stack &#xE9; uma estrutura de dados com duas opera&#xE7;&#xF5;es: push e pop.</p>
@@ -863,7 +902,7 @@ ret
 }
 </code></pre>
 <p>Dessa forma, o conceito de Stack &#xE9; utilizado na arquitetura de programas para organizar o fluxo do programa e o escopo de fun&#xE7;&#xF5;es.</p>
-<h3 id="262-stack-para-assembly">2.6.2 Stack para Assembly</h3>
+<h3 id="stack-para-assembly">Stack para Assembly</h3>
 <p>A stack &#xE9; uma <strong>regi&#xE3;o cont&#xED;nua de mem&#xF3;ria no computador onde as vari&#xE1;veis locais ser&#xE3;o armazenadas</strong>. Ela &#xE9; uma estrutura de dados com duas opera&#xE7;&#xF5;es: <strong>PUSH</strong> (adicionar valor ao topo) e <strong>POP</strong> (retirar valor do topo).</p>
 <p>No assembly:</p>
 <ul>
@@ -982,7 +1021,7 @@ main:
 <li><strong>[EBP-8]</strong> = local2</li>
 <li><strong>[EBP-12]</strong> = local3</li>
 </ul>
-<h2 id="27-assembly-na-pr&#xE1;tica">2.7 Assembly na pr&#xE1;tica</h2>
+<h2 id="assembly-na-pr&#xE1;tica">Assembly na pr&#xE1;tica</h2>
 <p>Come&#xE7;aremos com alguns problemas b&#xE1;sicos de Engenharia Reversa de Assembly.</p>
 <p>Os problemas s&#xE3;o do reposit&#xF3;rio: <a href="https://github.com/kablaa/CTF-Workshop/blob/master/Reversing/Challenges/IfThen/if_then" target="_blank">kablaa-CTF-Workshop</a>.</p>
 <h3 id="hello-world">Hello World</h3>
@@ -1113,7 +1152,7 @@ call   80482d0 &lt;printf@plt&gt;
 <p>Quando rodamos o bin&#xE1;rio, vemos que isso &#xE9; verdade:</p>
 <pre><code>$    ./loop
 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19
-</code></pre><h2 id="28-t&#xF3;pico-adicional-diretivas-assembly">2.8 T&#xF3;pico Adicional: Diretivas Assembly</h2>
+</code></pre><h2 id="t&#xF3;pico-adicional-diretivas-assembly">T&#xF3;pico Adicional: Diretivas Assembly</h2>
 <p>Usamos assembly apenas para an&#xE1;lise, mas ele pode ser trabalhado como se fosse uma linguagem de programa&#xE7;&#xE3;o comum. Para compilar um c&#xF3;digo em assembly em c&#xF3;digo de m&#xE1;quina, temos o assembler.</p>
 <p>Dado isto, temos as <strong>diretivas</strong> no c&#xF3;digo assembly, que n&#xE3;o existem no execut&#xE1;vel final. Elas servem para guiar o Assembler na compila&#xE7;&#xE3;o do c&#xF3;digo:</p>
 <pre><code>Assembly Source (.s) &#x2192; Assembler &#x2192; Object File (.o) &#x2192; Linker &#x2192; Executable (.exe)
@@ -1205,39 +1244,6 @@ _start:
 <li><code>54 4553 54</code> - String &quot;TEXT&quot;</li>
 </ul>
 <p><code>.file</code>, <code>.text</code> e <code>.global</code> sumiram.</p>
-<h2 id="28-assembly-cheatsheet">2.8 Assembly CheatSheet</h2>
-<ul>
-<li><strong>Registradores</strong> - Mem&#xF3;ria no processador que armazena informa&#xE7;&#xE3;o<ul>
-<li><code>rbp</code>: Base Pointer, aponta para a <strong>base do stack</strong> frame atual</li>
-<li><code>rsp</code>: Stack Pointer, aponta para o <strong>topo da stack</strong> frame atual</li>
-<li><code>rip</code>: Instruction Pointer, aponta para a <strong>instru&#xE7;&#xE3;o a ser executada</strong></li>
-<li>Prefixos: <code>r</code> - 8 bytes. <code>e</code> - 4 bytes. <code>nada</code> - 2 bytes. Sufixo <code>l</code> - Lower byte</li>
-</ul>
-</li>
-<li>Words<ul>
-<li><code>word</code> - 2 bytes</li>
-<li><code>dword</code> - 4 bytes</li>
-<li><code>qword</code> - 8 bytes</li>
-</ul>
-</li>
-<li><strong>Stack</strong> - Regi&#xE3;o de mem&#xF3;ria com opera&#xE7;&#xF5;es push/pop, onde vari&#xE1;veis locais s&#xE3;o armazenadas. Cresce negativamente (topo &#xE9; endere&#xE7;o menor, base &#xE9; endere&#xE7;o maior).</li>
-<li><strong>Instru&#xE7;&#xF5;es</strong><ul>
-<li><code>mov</code> - <strong>Move dados de um registrador para outro</strong> (segundo para o primeiro).</li>
-<li><code>dereference</code> - <strong>colchetes [ ] referenciam dados ao qual um ponteiro aponta</strong>.</li>
-<li><code>lea</code> - <strong>Calcula o endere&#xE7;o do segundo operando</strong>, e move para o primeiro.</li>
-<li><code>add</code> - <strong>Adiciona dois valores</strong> e armazena no primeiro operando.</li>
-<li><code>sub</code> - <strong>Subtrai o segundo operando do primeiro</strong> e armazena no primeiro.</li>
-<li><code>xor</code> - <strong>Faz o xor nos dois argumentos</strong>, e armazena no primeiro operando. and e or s&#xE3;o semelhantes.</li>
-<li><code>push</code> - <strong>Cresce a stack em 8 ou 4 bytes</strong> (para x64, ou 4 para x86), <strong>depois</strong> <strong>adiciona o conte&#xFA;do do registrador para o topo da stack.</strong></li>
-<li><code>pop</code> - Tira 8 bytes do topo da stack e armazena no argumento. Depois encolhe a stack.</li>
-<li><code>jmp</code> - <strong>Pula para um endere&#xE7;o de instru&#xE7;&#xE3;o</strong>. Redireciona a execu&#xE7;&#xE3;o do c&#xF3;digo.</li>
-<li><code>call</code> - Redu&#xE7;&#xE3;o dos comandos <code>push RIP</code> e <code>jmp function</code>. Utilizado sempre que se chama uma fun&#xE7;&#xE3;o.</li>
-<li><code>ret</code> - Redu&#xE7;&#xE3;o do comando <code>pop RIP</code> (desempilha topo da stack para voltar para a execu&#xE7;&#xE3;o de c&#xF3;digo antes da chamada de fun&#xE7;&#xE3;o, e atribui o valor do pop ao RIP).</li>
-<li><code>cmp</code> - <strong>Compara dois operandos, faz o primeiro menos o segundo e checa se o resultado &#xE9; maior/menor/igual a zero</strong>. Dependendo do valor, <strong>define uma flag</strong> de acordo.</li>
-<li><code>jnz/jz</code> -  (jump if not zero/jump if zero) Similar ao jmp. Mas apenas <strong>executa dependendo do status da zero flag</strong>. Existem outros jumps.</li>
-</ul>
-</li>
-</ul>
 
                                 
                                 </section>
@@ -1281,7 +1287,7 @@ _start:
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Assembly","level":"1.2.1","depth":2,"next":{"title":"Endianness","level":"1.2.2","depth":2,"path":"introduction/3_endianness.md","ref":"./introduction/3_endianness.md","articles":[]},"previous":{"title":"Introdução ao Pwning","level":"1.2","depth":1,"path":"introduction/1_beginning.md","ref":"./introduction/1_beginning.md","articles":[{"title":"Assembly","level":"1.2.1","depth":2,"path":"introduction/2_assembly.md","ref":"./introduction/2_assembly.md","articles":[]},{"title":"Endianness","level":"1.2.2","depth":2,"path":"introduction/3_endianness.md","ref":"./introduction/3_endianness.md","articles":[]},{"title":"Ghidra","level":"1.2.3","depth":2,"path":"introduction/4_ghidra.md","ref":"./introduction/4_ghidra.md","articles":[]},{"title":"GDB","level":"1.2.4","depth":2,"path":"introduction/5_gdb.md","ref":"./introduction/5_gdb.md","articles":[]},{"title":"Pwntools","level":"1.2.5","depth":2,"path":"introduction/6_pwntools.md","ref":"./introduction/6_pwntools.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css","website":"styles/website.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css","website":"styles/website.css"}},"file":{"path":"introduction/2_assembly.md","mtime":"2025-12-18T20:26:10.080Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2025-12-19T13:17:28.477Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Assembly","level":"1.2.1","depth":2,"next":{"title":"Endianness","level":"1.2.2","depth":2,"path":"introduction/3_endianness.md","ref":"./introduction/3_endianness.md","articles":[]},"previous":{"title":"Introdução ao Pwning","level":"1.2","depth":1,"path":"introduction/1_beginning.md","ref":"./introduction/1_beginning.md","articles":[{"title":"Assembly","level":"1.2.1","depth":2,"path":"introduction/2_assembly.md","ref":"./introduction/2_assembly.md","articles":[]},{"title":"Endianness","level":"1.2.2","depth":2,"path":"introduction/3_endianness.md","ref":"./introduction/3_endianness.md","articles":[]},{"title":"Ghidra","level":"1.2.3","depth":2,"path":"introduction/4_ghidra.md","ref":"./introduction/4_ghidra.md","articles":[]},{"title":"GDB","level":"1.2.4","depth":2,"path":"introduction/5_gdb.md","ref":"./introduction/5_gdb.md","articles":[]},{"title":"Pwntools","level":"1.2.5","depth":2,"path":"introduction/6_pwntools.md","ref":"./introduction/6_pwntools.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css","website":"styles/website.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css","website":"styles/website.css"}},"file":{"path":"introduction/2_assembly.md","mtime":"2025-12-19T13:45:15.935Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2025-12-21T02:45:52.953Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

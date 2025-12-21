@@ -266,6 +266,45 @@
             
         </li>
     
+        <li class="chapter " data-level="1.3.1.5" data-path="../../pwning/4_array_indexing.html">
+            
+                <a href="../../pwning/4_array_indexing.html">
+            
+                    
+                    Array Indexing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.6" data-path="../../pwning/5_integer_overflow.html">
+            
+                <a href="../../pwning/5_integer_overflow.html">
+            
+                    
+                    Integer Overflow
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.7" data-path="../../pwning/6_bad_seed.html">
+            
+                <a href="../../pwning/6_bad_seed.html">
+            
+                    
+                    Bad seed
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -406,7 +445,7 @@
                 <a href="3_bof.html">
             
                     
-                    Buffer Overflow Simples
+                    Buffer Overflow - Variáveis
             
                 </a>
             
@@ -419,7 +458,7 @@
                 <a href="4_bof_callfunction.html">
             
                     
-                    Buffer Overflow - Variáveis
+                    Buffer Overflow - CallFunction
             
                 </a>
             
@@ -508,8 +547,8 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="2-prote&#xE7;&#xF5;es-de-bin&#xE1;rios">2. Prote&#xE7;&#xF5;es de bin&#xE1;rios</h1>
-<h2 id="21-relro-relocation-read-only">2.1 RELRO (Relocation Read-Only)</h2>
+                                <h1 id="prote&#xE7;&#xF5;es-de-bin&#xE1;rios">Prote&#xE7;&#xF5;es de bin&#xE1;rios</h1>
+<h2 id="relro-relocation-read-only">RELRO (Relocation Read-Only)</h2>
 <p><strong>Funcionamento</strong></p>
 <p>Controla as permiss&#xF5;es de escrita em tabelas de dados que cont&#xEA;m ponteiros para fun&#xE7;&#xF5;es externas: o GOT (Global Offset Table) e o PLT (Procedure Linkage Table).</p>
 <ul>
@@ -523,7 +562,7 @@
 <li><strong>Partial RELRO</strong>: Permite Lazy Binding, o GOT &#xE9; grav&#xE1;vel (rw) porque &#xE9; atualizado em tempo de execu&#xE7;&#xE3;o quando uma fun&#xE7;&#xE3;o externa &#xE9; chamada pela primeira vez. Modifique o GOT antes que a fun&#xE7;&#xE3;o a ser explorada seja chamada pela segunda vez.</li>
 <li><strong>Full RELRO</strong>: Extremamente dif&#xED;cil ou imposs&#xED;vel modificar o GOT diretamente. O ataque deve focar em t&#xE9;cnicas que n&#xE3;o envolvam a escrita no GOT.</li>
 </ul>
-<h2 id="22-stack-canaryssp-stack-smashing-protector">2.2 Stack Canary/SSP (Stack-Smashing Protector)</h2>
+<h2 id="stack-canaryssp-stack-smashing-protector">Stack Canary/SSP (Stack-Smashing Protector)</h2>
 <p><strong>Funcionamento</strong></p>
 <ol>
 <li>O compilador insere um valor aleat&#xF3;rio de 4 ou 8 bytes (o Canary) na Stack, imediatamente antes do endere&#xE7;o de retorno salvo.</li>
@@ -535,20 +574,20 @@
 <p>Impede sobrescrita do <code>return address</code> na stack.</p>
 <p><strong>Contorno</strong></p>
 <p>Vazar o <strong>Canary</strong> (endere&#xE7;o de verifica&#xE7;&#xE3;o do Stack Canary), mantendo o valor que ele usa como verifica&#xE7;&#xE3;o na stack. Ou sobrescrever ponteiros de fun&#xE7;&#xE3;o na Heap (Heap Overflow) ou em &#xE1;reas n&#xE3;o protegidas pelo Canary.</p>
-<h2 id="23-nxdep">2.3 NX/DEP</h2>
+<h2 id="nxdep">NX/DEP</h2>
 <p><strong>Funcionamento</strong></p>
 <p>Recurso de hardware (CPU) e software (SO). Um bit na entrada da tabela de p&#xE1;ginas de mem&#xF3;ria (<code>Page Table Entry - PTE</code>) &#xE9; marcado. Se o bit NX estiver ativado (1), <strong>o processador n&#xE3;o permitir&#xE1; a busca e execu&#xE7;&#xE3;o de instru&#xE7;&#xF5;es nessa p&#xE1;gina de mem&#xF3;ria, mesmo que o c&#xF3;digo tente saltar para l&#xE1;</strong>.</p>
 <p><strong>Efeito</strong></p>
 <p>Impede com que &#xE1;reas da mem&#xF3;ria que deveriam conter apenas dados sejam executadas. Impede inje&#xE7;&#xE3;o de Shellcode na Stack/Heap.</p>
 <p><strong>Contorno</strong>: Usar ROP (Return-Oriented Programming) ou JOP (Jump-Oriented Programming), que reutilizam c&#xF3;digo do pr&#xF3;prio programa, estes estando em &#xE1;reas com permiss&#xE3;o de execu&#xE7;&#xE3;o. </p>
-<h2 id="24-pie-position-independent-executable--aslr-address-space-layout-randomization">2.4 PIE (Position-Independent Executable) + ASLR (Address Space Layout Randomization)</h2>
+<h2 id="pie-position-independent-executable--aslr-address-space-layout-randomization">PIE (Position-Independent Executable) + ASLR (Address Space Layout Randomization)</h2>
 <p><strong>Funcionamento</strong></p>
 <p>Na inicializa&#xE7;&#xE3;o do processo, o sistema operacional carrega a base do execut&#xE1;vel, bibliotecas compartilhadas (como <code>libc</code>), a Stack e a Heap em endere&#xE7;os de mem&#xF3;ria aleat&#xF3;rios e diferentes a cada execu&#xE7;&#xE3;o</p>
 <p><strong>Efeito</strong></p>
 <p>Endere&#xE7;os do execut&#xE1;vel randomizados toda vez que ele roda. Mesmo que voc&#xEA; tenha o execut&#xE1;vel, os endere&#xE7;os que voc&#xEA; obtiver ser&#xE3;o in&#xFA;teis na m&#xE1;quina alvo, onde voc&#xEA; tem apenas um <code>input</code> e mais nada.</p>
 <p><strong>Contorno</strong></p>
 <p>Vazar endere&#xE7;os.</p>
-<h2 id="25-fortify-source">2.5 Fortify Source</h2>
+<h2 id="fortify-source">Fortify Source</h2>
 <p>Recurso do compilador (GCC/Clang) que substitui chamadas a fun&#xE7;&#xF5;es C inseguras (strcpy, memcpy, snprintf) por vers&#xF5;es mais seguras em tempo de compila&#xE7;&#xE3;o. Essas vers&#xF5;es verificam se o tamanho de destino fornecido pelo programador &#xE9; excedido e, se houver um estouro, encerram o programa.</p>
 <p><strong>Efeito</strong></p>
 <p>Ajuda a evitar alguns Buffer Overflows simples, mas apenas se o compilador conseguir determinar o tamanho do buffer de destino</p>
@@ -584,7 +623,7 @@
                 </a>
                 
                 
-                <a href="3_bof.html" class="navigation navigation-next " aria-label="Next page: Buffer Overflow Simples">
+                <a href="3_bof.html" class="navigation navigation-next " aria-label="Next page: Buffer Overflow - Variáveis">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -595,7 +634,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Proteções de binários","level":"1.4.2.1","depth":3,"next":{"title":"Buffer Overflow Simples","level":"1.4.2.2","depth":3,"path":"fast_food/pwning/3_bof.md","ref":"./fast_food/pwning/3_bof.md","articles":[]},"previous":{"title":"Fast Pwning","level":"1.4.2","depth":2,"path":"pwning/1_beginning.md","ref":"./pwning/1_beginning.md","articles":[{"title":"Proteções de binários","level":"1.4.2.1","depth":3,"path":"fast_food/pwning/2_protections.md","ref":"./fast_food/pwning/2_protections.md","articles":[]},{"title":"Buffer Overflow Simples","level":"1.4.2.2","depth":3,"path":"fast_food/pwning/3_bof.md","ref":"./fast_food/pwning/3_bof.md","articles":[]},{"title":"Buffer Overflow - Variáveis","level":"1.4.2.3","depth":3,"path":"fast_food/pwning/4_bof_callfunction.md","ref":"./fast_food/pwning/4_bof_callfunction.md","articles":[]},{"title":"Buffer Overflow - ShellCode","level":"1.4.2.4","depth":3,"path":"fast_food/pwning/5_bof_shellcode.md","ref":"./fast_food/pwning/5_bof_shellcode.md","articles":[]},{"title":"Format Strings","level":"1.4.2.5","depth":3,"path":"fast_food/pwning/6_format_strings.md","ref":"./fast_food/pwning/6_format_strings.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css","website":"styles/website.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css","website":"styles/website.css"}},"file":{"path":"fast_food/pwning/2_protections.md","mtime":"2025-12-18T20:52:50.188Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2025-12-19T13:17:28.477Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Proteções de binários","level":"1.4.2.1","depth":3,"next":{"title":"Buffer Overflow - Variáveis","level":"1.4.2.2","depth":3,"path":"fast_food/pwning/3_bof.md","ref":"./fast_food/pwning/3_bof.md","articles":[]},"previous":{"title":"Fast Pwning","level":"1.4.2","depth":2,"path":"pwning/1_beginning.md","ref":"./pwning/1_beginning.md","articles":[{"title":"Proteções de binários","level":"1.4.2.1","depth":3,"path":"fast_food/pwning/2_protections.md","ref":"./fast_food/pwning/2_protections.md","articles":[]},{"title":"Buffer Overflow - Variáveis","level":"1.4.2.2","depth":3,"path":"fast_food/pwning/3_bof.md","ref":"./fast_food/pwning/3_bof.md","articles":[]},{"title":"Buffer Overflow - CallFunction","level":"1.4.2.3","depth":3,"path":"fast_food/pwning/4_bof_callfunction.md","ref":"./fast_food/pwning/4_bof_callfunction.md","articles":[]},{"title":"Buffer Overflow - ShellCode","level":"1.4.2.4","depth":3,"path":"fast_food/pwning/5_bof_shellcode.md","ref":"./fast_food/pwning/5_bof_shellcode.md","articles":[]},{"title":"Format Strings","level":"1.4.2.5","depth":3,"path":"fast_food/pwning/6_format_strings.md","ref":"./fast_food/pwning/6_format_strings.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css","website":"styles/website.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css","website":"styles/website.css"}},"file":{"path":"fast_food/pwning/2_protections.md","mtime":"2025-12-19T13:43:39.163Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2025-12-21T02:45:52.953Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
